@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NPC
   - Water
   - UI
   - 
-  - 
+  - Player
   - 
   - 
   - 
@@ -38,11 +38,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky
+    uniqueID: 1495065441
+    locked: 0
   - name: Background
     uniqueID: 949194267
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1487063867
+    locked: 0
+  - name: Ground
+    uniqueID: 542232809
     locked: 0
   m_RenderingLayers:
   - Default
