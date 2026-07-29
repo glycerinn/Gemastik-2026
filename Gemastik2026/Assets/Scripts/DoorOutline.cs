@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorOutline : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class DoorOutline : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && playerInRange)
         {
             door.SetActive(false);
+            SceneManager.LoadScene("FishMinigame");
         }
     }
 

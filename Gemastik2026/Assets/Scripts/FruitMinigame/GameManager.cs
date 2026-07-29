@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private bool isGameOver = false;
+    // private bool isGameOver = false;
 
     void Awake()
     {
@@ -15,10 +15,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    void GameOver()
-    {
-        isGameOver = true;
+    // void GameOver()
+    // {
+    //     isGameOver = true;
 
-        Time.timeScale = 0f;
-    }
+    //     Time.timeScale = 0f;
+    // }
 }

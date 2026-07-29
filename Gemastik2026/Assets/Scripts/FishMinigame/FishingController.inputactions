@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "name": "FishingController",
+    "maps": [
+        {
+            "name": "Fishing",
+            "id": "869a5c04-9a39-4489-aeac-c420a5b578c2",
+            "actions": [
+                {
+                    "name": "Stop",
+                    "type": "Button",
+                    "id": "ba2b014f-9a5e-4d80-bb99-086102fa4c3a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "64cd8256-71de-476e-bfeb-39874b4ce78e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fd68924-804d-4e45-83d4-305002f628a4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

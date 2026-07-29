@@ -35,7 +35,7 @@
 .header {
     color: rgb(255, 255, 255);
     -unity-font-style: bold;
-    font-size: 100px;
+    font-size: 150px;
     align-self: center;
     margin-top: 100px;
     transition-property: font-size;
@@ -44,8 +44,3 @@
 }
 
 
-
-.header-grow {
-    font-size: 150px;
-    transition-timing-function: ease-out;
-}

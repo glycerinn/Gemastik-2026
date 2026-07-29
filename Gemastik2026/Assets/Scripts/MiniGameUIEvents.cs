@@ -2,17 +2,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class MainMenuEvents : MonoBehaviour
+public class MiniGameUIEvents : MonoBehaviour
 {
     private UIDocument uIDocument;
-    private Label title;
     private Button button;
 
     private void Awake()
     {
         uIDocument = GetComponent<UIDocument>();
 
-        button = uIDocument.rootVisualElement.Q("StartGameButton") as Button;
+        button = uIDocument.rootVisualElement.Q("BackButton") as Button;
         button.RegisterCallback<ClickEvent>(OnPlayGame);
     }
 

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/MenuAssets/MainMenu.uss?fileID=7433441132597879392&amp;guid=68a830bf9f4b01441b3d61313cb1cf9c&amp;type=3#MainMenu"/>
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Sky.jpg?fileID=2800000&amp;guid=ac9fb45269254374f93bef8edbc60962&amp;type=3#Sky&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.58);">
+        <ui:Label text="Completed!" name="Label" style="font-size: 150px; margin-top: 120px; align-self: center; -unity-font-style: bold;"/>
+        <ui:Button text="Back" name="BackButton" class="button"/>
+    </ui:VisualElement>
+</ui:UXML>
