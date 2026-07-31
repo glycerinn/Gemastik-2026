@@ -1,13 +1,16 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    // private bool isGameOver = false;
+    public int targetTrash = 30;
+    private int collectedTrash = 0;
+    public GameObject completedPanel;
+
+    public TextMeshProUGUI counterText;
 
     void Awake()
     {
@@ -15,10 +18,37 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    // void GameOver()
-    // {
-    //     isGameOver = true;
+    void Start()
+    {
+        UpdateCounter();
+    }
 
-    //     Time.timeScale = 0f;
-    // }
+    public void TrashCollected()
+    {
+        collectedTrash++;
+        UpdateCounter();
+
+        if (collectedTrash >= targetTrash)
+        {
+            WinGame();
+        }
+    }
+
+    void UpdateCounter()
+    {
+        if (counterText != null)
+            counterText.text = $"{collectedTrash}/{targetTrash}";
+    }
+
+    void WinGame()
+    {
+        Debug.Log("You Win!");
+
+        TrashSpawner spawner = FindFirstObjectByType<TrashSpawner>();
+        if (spawner != null)
+            spawner.CancelInvoke();
+
+        Time.timeScale = 0f;
+        completedPanel.SetActive(true);
+    }
 }

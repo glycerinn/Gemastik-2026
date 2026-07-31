@@ -34,6 +34,7 @@ public class Trash : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        GameManager.instance.TrashCollected();
         Destroy(gameObject);
     }
 }

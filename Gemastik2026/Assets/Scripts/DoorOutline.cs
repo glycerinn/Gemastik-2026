@@ -9,6 +9,7 @@ public class DoorOutline : MonoBehaviour
     public Material outlineMaterial;
     private SpriteRenderer sr;
     private bool playerInRange;
+    public string sceneName;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +24,7 @@ public class DoorOutline : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && playerInRange)
         {
             door.SetActive(false);
-            SceneManager.LoadScene("FishMinigame");
+            SceneManager.LoadScene(sceneName);
         }
     }
 

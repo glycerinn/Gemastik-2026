@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UI;
 
 public class GateQueue : MonoBehaviour
 {
@@ -14,7 +13,10 @@ public class GateQueue : MonoBehaviour
     GameObject obj;
     Sortable sortable;
     private bool Busy;
-    public GameOverScreen GameOverScreen;
+    public GameObject GameOverScreen;
+    public int targetScore = 30;
+    private int currentScore = 0;
+    public TextMeshProUGUI scoreText;
 
     void Start()
     {
@@ -35,23 +37,14 @@ public class GateQueue : MonoBehaviour
             Vector3 targetPos = currentItem.transform.position + Vector3.up * 6;
             if (currentItem.GetSortableType() == Sortable.SortableType.Fish)
             {
-
-                StartCoroutine(SortAndShift(currentItem, targetPos));
+                AddScore();
             }
-            else if (currentItem.GetSortableType() == Sortable.SortableType.Trash)
+            else
             {
-                StartCoroutine(SortAndShift(currentItem, targetPos));
-                GameOver();
+                RemoveScore();
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Vector3 targetPos = currentItem.transform.position + Vector3.up * 0;
-            if (currentItem.GetSortableType() == Sortable.SortableType.Coin)
-            {
-                StartCoroutine(SortAndShift(currentItem, targetPos));
-            }
+            StartCoroutine(SortAndShift(currentItem, targetPos));
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -59,14 +52,13 @@ public class GateQueue : MonoBehaviour
             Vector3 targetPos = currentItem.transform.position + Vector3.down * 5;
             if (currentItem.GetSortableType() == Sortable.SortableType.Trash)
             {
-
-                StartCoroutine(SortAndShift(currentItem, targetPos));
+                AddScore();
             }
-            else if (currentItem.GetSortableType() == Sortable.SortableType.Fish)
+            else
             {
-                StartCoroutine(SortAndShift(currentItem, targetPos));
-                GameOver();
+                RemoveScore();
             }
+            StartCoroutine(SortAndShift(currentItem, targetPos));
         }
     }
 
@@ -122,10 +114,30 @@ public class GateQueue : MonoBehaviour
         Sortables_.Add(sortable);
     }
 
-    public void GameOver()
+    void AddScore()
     {
-        GameOverScreen.SetUp();
+        currentScore++;
+
+        if (scoreText != null)
+            scoreText.text = $"{currentScore}/{targetScore}";
+
+        if (currentScore >= targetScore)
+        {
+            WinGame();
+        }
     }
 
-   
+    void RemoveScore()
+    {
+        currentScore = Mathf.Max(0, currentScore - 1);
+
+        if (scoreText != null)
+            scoreText.text = $"{currentScore}/{targetScore}";
+    }
+
+    void WinGame()
+    {
+        Busy = true;
+        GameOverScreen.SetActive(true);
+    }
 }

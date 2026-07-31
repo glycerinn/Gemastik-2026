@@ -14,6 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FishMinigame.unity
     guid: a1c6fec71a01cd2429096e87e39bacc3
+  - enabled: 1
+    path: Assets/Scenes/FruitMinigame.unity
+    guid: 2a3cfe123c14f02418636a62d1aa2426
+  - enabled: 1
+    path: Assets/Scenes/TomatoMinigame.unity
+    guid: ae17c2fde9c3ebd47b9fba4cadb3458d
+  - enabled: 1
+    path: Assets/Scenes/TempeMinigame.unity
+    guid: 351e15ae2fb10a64390487d05f441088
+  - enabled: 1
+    path: Assets/Scenes/RiceMinigame.unity
+    guid: 08550b641ee0e4148b27e4a1e6d098b0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
