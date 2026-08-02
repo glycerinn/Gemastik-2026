@@ -5,7 +5,6 @@ public class DragTemp : MonoBehaviour
     public TempeSource source;
 
     private Rigidbody2D rb;
-    private bool dragging;
 
     void Awake()
     {
@@ -15,7 +14,6 @@ public class DragTemp : MonoBehaviour
 
     void OnMouseDown()
     {
-        dragging = true;
         rb.gravityScale = 0f;
         rb.linearVelocity = Vector2.zero;
     }
@@ -29,7 +27,6 @@ public class DragTemp : MonoBehaviour
 
     void OnMouseUp()
     {
-        dragging = false;
         rb.gravityScale = 1f;
     }
 

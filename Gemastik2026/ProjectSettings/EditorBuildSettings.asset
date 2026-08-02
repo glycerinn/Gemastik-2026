@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/FruitMinigame.unity
     guid: 2a3cfe123c14f02418636a62d1aa2426
   - enabled: 1
-    path: Assets/Scenes/TomatoMinigame.unity
+    path: Assets/Scenes/PeanutMinigame.unity
     guid: ae17c2fde9c3ebd47b9fba4cadb3458d
   - enabled: 1
     path: Assets/Scenes/TempeMinigame.unity
