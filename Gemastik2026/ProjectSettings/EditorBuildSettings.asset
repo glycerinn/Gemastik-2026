@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RiceMinigame.unity
     guid: 08550b641ee0e4148b27e4a1e6d098b0
+  - enabled: 1
+    path: Assets/Scenes/CookingScene.unity
+    guid: 43728adb5ec5fda4b8320ae29c92aafa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

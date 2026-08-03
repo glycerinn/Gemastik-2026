@@ -1,34 +1,44 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class NewspaperType
+{
+    public NutritionProblem problem;
+    public Color color;
+}
+
 public class NewspaperPanel : MonoBehaviour
 {
-    [Header("UI")]
     public Image panelImage;
+    public NewspaperType[] newspapers;
 
-    [Header("Possible Colors")]
-    public Color[] colors = new Color[4];
-
-    private void Start()
+    void Start()
     {
-        RandomizeColor();
-
-        // Optional: Pause the game while the newspaper is open.
-        Time.timeScale = 0f;
+        ShowNewspaper();
     }
 
-    void RandomizeColor()
+    public void ShowNewspaper()
     {
-        if (colors.Length == 0)
-            return;
+        DayManager.Instance.StartNewDay();
 
-        int randomIndex = Random.Range(0, colors.Length);
-        panelImage.color = colors[randomIndex];
+        foreach (NewspaperType paper in newspapers)
+        {
+            if (paper.problem ==
+                DayManager.Instance.currentProblem)
+            {
+                panelImage.color = paper.color;
+                break;
+            }
+        }
+
+        gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void CloseNewspaper()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
         gameObject.SetActive(false);
     }
 }

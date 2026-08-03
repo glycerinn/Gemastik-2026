@@ -1,60 +1,98 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CookingGameManager : MonoBehaviour
 {
+    [Header("Managers")]
     public PlateManager plateManager;
-    public Button submitButton;
     public StudentManager studentManager;
     public FoodGenerator foodGenerator;
+    public ResultUI resultsUI;
+
+    [Header("UI")]
+    public GameObject submitButton;
+
+    private int successfulMeals;
+    private int failedMeals;
 
     private void Start()
     {
-        submitButton.gameObject.SetActive(false);
-        submitButton.onClick.AddListener(SubmitMeal);
+        submitButton.SetActive(false);
     }
 
     public void CheckPlateFilled()
     {
-        submitButton.gameObject.SetActive(plateManager.IsPlateFull());
+        foreach (PlateSlot slot in plateManager.plateSlots)
+        {
+            if (slot.currentItem == null)
+            {
+                submitButton.SetActive(false);
+                return;
+            }
+        }
+
+        submitButton.SetActive(true);
     }
 
-    void SubmitMeal()
+    public void SubmitMeal()
     {
         plateManager.CalculatePlate();
+        bool success = CheckMeal();
 
-        CheckMeal();
+        if (success)
+            successfulMeals++;
+        else
+            failedMeals++;
 
         plateManager.ClearPlate();
-
         foodGenerator.ResetChoices();
+        submitButton.SetActive(false);
 
-        studentManager.NextStudent();
-
-        submitButton.gameObject.SetActive(false);
+        // Continue to the next student or finish the day
+        if (studentManager.HasMoreStudents())
+        {
+            studentManager.NextStudent();
+        }
+        else
+        {
+            resultsUI.ShowResults(successfulMeals, failedMeals);
+        }
     }
 
-    void CheckMeal()
+    private bool CheckMeal()
     {
         StudentSO student = studentManager.CurrentStudent;
 
-        NutritionTarget target = NutritionTargets.GetTarget(student.nutritionProblem);
+        NutritionTarget target =
+            NutritionTargets.GetTarget(student.nutritionProblem);
 
         bool percentagesCorrect =
             Mathf.Approximately(plateManager.carbPercent, target.carbs) &&
             Mathf.Approximately(plateManager.proteinPercent, target.protein) &&
             Mathf.Approximately(plateManager.fatPercent, target.fat);
 
-       bool favoritesCorrect =
+        bool favoritesCorrect =
             plateManager.AllFoodsAreFavorites(student);
 
         if (!percentagesCorrect)
-            Debug.Log("Mistake: Wrong nutrition percentages.");
+            Debug.Log("Wrong nutrition percentages.");
 
         if (!favoritesCorrect)
-            Debug.Log("Mistake: Student doesn't like one or more foods.");
+            Debug.Log("Contains food the student dislikes.");
 
-        if (percentagesCorrect && favoritesCorrect)
-            Debug.Log("Correct meal!");
+        bool success = percentagesCorrect && favoritesCorrect;
+
+        Debug.Log(success ? "Meal Successful!" : "Meal Failed!");
+
+        return success;
+    }
+
+    public int GetSuccessfulMeals()
+    {
+        return successfulMeals;
+    }
+
+    public int GetFailedMeals()
+    {
+        return failedMeals;
     }
 }
