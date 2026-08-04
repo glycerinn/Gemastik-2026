@@ -49,6 +49,11 @@ public class IngredientNPC : MonoBehaviour
 
         rewardGiven = true;
         IngredientManager.Instance.UnlockFood(rewardFood);
+        TownGameManager.Instance.CollectIngredient(rewardFood);
+        if (InventoryUI.Instance != null)
+        {
+            InventoryUI.Instance.RefreshInventory();
+        }
         Debug.Log($"{name} gave {rewardFood.foodName}");
     }
 }

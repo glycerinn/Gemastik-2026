@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGameUIEvents
   minigameType: 2
+  rewardFood: {fileID: 11400000, guid: 8d8ffd16c4a595c4f9c29b0f27ebae68, type: 2}
 --- !u!114 &721850422
 MonoBehaviour:
   m_ObjectHideFlags: 0

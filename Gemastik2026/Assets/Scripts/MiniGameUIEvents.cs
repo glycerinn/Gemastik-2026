@@ -7,6 +7,7 @@ public class MiniGameUIEvents : MonoBehaviour
     private UIDocument uIDocument;
     private Button button;
     public MinigameType minigameType;
+    public FoodSO rewardFood;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class MiniGameUIEvents : MonoBehaviour
     private void OnPlayGame(ClickEvent evt)
     {
         Debug.Log("pressed");
+        TownGameManager.Instance.CollectIngredient(rewardFood);
         TownGameManager.Instance.CompleteMinigame(minigameType);
         SceneManager.LoadScene("SideScroller");
         Time.timeScale = 1f;

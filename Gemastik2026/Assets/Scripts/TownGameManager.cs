@@ -13,6 +13,16 @@ public class TownGameManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private List<MinigameType> completedMinigamesDebug = new();
 
+    public List<FoodSO> collectedIngredients = new List<FoodSO>();
+
+    public void CollectIngredient(FoodSO food)
+    {
+        if (!collectedIngredients.Contains(food))
+        {
+            collectedIngredients.Add(food);
+        }
+    }
+
     private void Awake()
     {
         if (Instance == null)
