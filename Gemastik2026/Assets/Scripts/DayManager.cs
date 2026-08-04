@@ -7,6 +7,7 @@ public class DayManager : MonoBehaviour
 
     [Header("Day")]
     public int currentDay = 1;
+    public bool newspaperShownToday;
 
     [Header("Today's Newspaper")]
     public NutritionProblem currentProblem;
@@ -26,8 +27,9 @@ public class DayManager : MonoBehaviour
 
     public void StartNewDay()
     {
-        currentProblem =
-            (NutritionProblem)Random.Range(0, 4);
+        currentProblem = (NutritionProblem)Random.Range(0, 4);
+
+        newspaperShownToday = false;
 
         Debug.Log($"Day {currentDay}");
         Debug.Log($"Today's problem: {currentProblem}");

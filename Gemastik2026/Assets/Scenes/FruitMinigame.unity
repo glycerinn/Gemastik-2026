@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528bb673907f7fc48bd472ece1dfa396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGameUIEvents
+  minigameType: 2
 --- !u!114 &721850422
 MonoBehaviour:
   m_ObjectHideFlags: 0

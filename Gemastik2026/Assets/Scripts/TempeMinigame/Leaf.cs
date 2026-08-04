@@ -16,6 +16,7 @@ public class Leaf : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Triggered by: " + other.name);
         if (occupied)
             return;
 
@@ -26,8 +27,8 @@ public class Leaf : MonoBehaviour
 
         DragTemp temp = other.GetComponent<DragTemp>();
 
+        temp.wasPlacedSuccessfully = true;
         TempeGameManager.Instance.AddPoint();
-
         temp.source.SquareFinished();
 
         Destroy(other.gameObject);

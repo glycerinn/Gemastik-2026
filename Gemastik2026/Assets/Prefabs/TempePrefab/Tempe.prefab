@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fe63ced89243342b253dfb02d359c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragTemp
+  source: {fileID: 0}
 --- !u!50 &5613148911575888697
 Rigidbody2D:
   serializedVersion: 5

@@ -3,7 +3,7 @@ using UnityEngine;
 public class DragTemp : MonoBehaviour
 {
     public TempeSource source;
-
+    public bool wasPlacedSuccessfully = false;
     private Rigidbody2D rb;
 
     void Awake()
@@ -32,10 +32,11 @@ public class DragTemp : MonoBehaviour
 
     void OnBecameInvisible()
     {
+        if (wasPlacedSuccessfully)
+            return;
+
         TempeGameManager.Instance.LosePoint();
-
         source.SquareFinished();
-
         Destroy(gameObject);
     }
 }

@@ -6,6 +6,7 @@ public class MiniGameUIEvents : MonoBehaviour
 {
     private UIDocument uIDocument;
     private Button button;
+    public MinigameType minigameType;
 
     private void Awake()
     {
@@ -23,7 +24,9 @@ public class MiniGameUIEvents : MonoBehaviour
     private void OnPlayGame(ClickEvent evt)
     {
         Debug.Log("pressed");
+        TownGameManager.Instance.CompleteMinigame(minigameType);
         SceneManager.LoadScene("SideScroller");
+        Time.timeScale = 1f;
     }
 
     private void OnDisable()

@@ -14,6 +14,7 @@ public class TempeGameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        Debug.Log("Awake: " + GetInstanceID());
     }
 
     void Start()
@@ -23,7 +24,10 @@ public class TempeGameManager : MonoBehaviour
 
     public void AddPoint()
     {
+        Debug.Log("Before: " + score);
         score++;
+
+        Debug.Log("After: " + score);
 
         UpdateUI();
 
@@ -36,6 +40,7 @@ public class TempeGameManager : MonoBehaviour
 
     public void LosePoint()
     {
+        Debug.Log("LosePoint called");
         score = Mathf.Max(0, score - 1);
         UpdateUI();
     }

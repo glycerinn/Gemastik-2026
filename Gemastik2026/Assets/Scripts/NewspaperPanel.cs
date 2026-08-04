@@ -15,7 +15,16 @@ public class NewspaperPanel : MonoBehaviour
 
     void Start()
     {
-        ShowNewspaper();
+        if (!DayManager.Instance.newspaperShownToday)
+        {
+            ShowNewspaper();
+
+            DayManager.Instance.newspaperShownToday = true;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void ShowNewspaper()

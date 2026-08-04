@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 244563534}
   - component: {fileID: 244563533}
   m_Layer: 0
-  m_Name: Building (2)
+  m_Name: PeanutGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -979,7 +979,7 @@ MonoBehaviour:
   doorLight: {fileID: 723139221}
   normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   outlineMaterial: {fileID: 2100000, guid: f7a854484bc574c4baa30e81f6ba09d6, type: 2}
-  sceneName: TomatoMinigame
+  sceneName: PeanutMinigame
 --- !u!61 &564926115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1232,6 +1232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
   currentDay: 1
+  newspaperShownToday: 0
   currentProblem: 0
 --- !u!4 &652511964
 Transform:
@@ -1725,6 +1726,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750878124}
   m_CullTransparentMesh: 1
+--- !u!1 &771868173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771868175}
+  - component: {fileID: 771868174}
+  m_Layer: 0
+  m_Name: TownGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &771868174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771868173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37c7a5705a665a41b941f9d47d49613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TownGameManager
+  totalMinigames: 5
+  completedMinigamesDebug: 
+--- !u!4 &771868175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771868173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.88522, y: 4.51499, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &778576839
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,7 +2916,7 @@ GameObject:
   - component: {fileID: 1192212093}
   - component: {fileID: 1192212092}
   m_Layer: 0
-  m_Name: Building
+  m_Name: FishGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3508,7 +3555,7 @@ GameObject:
   - component: {fileID: 1509850565}
   - component: {fileID: 1509850564}
   m_Layer: 0
-  m_Name: Building (5)
+  m_Name: School
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3859,6 +3906,7 @@ GameObject:
   - component: {fileID: 1723735532}
   - component: {fileID: 1723735534}
   - component: {fileID: 1723735533}
+  - component: {fileID: 1723735535}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -3946,6 +3994,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.8230958, y: 3.5046542}
   m_EdgeRadius: 0
+--- !u!114 &1723735535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723735531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b543885665dde0846a09b24fb8d14740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDoorLock
 --- !u!1 &1777380168
 GameObject:
   m_ObjectHideFlags: 0
@@ -4586,7 +4646,7 @@ GameObject:
   - component: {fileID: 1906352084}
   - component: {fileID: 1906352083}
   m_Layer: 0
-  m_Name: Building (3)
+  m_Name: Tempe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5137,7 +5197,7 @@ GameObject:
   - component: {fileID: 2022357250}
   - component: {fileID: 2022357249}
   m_Layer: 0
-  m_Name: Building (4)
+  m_Name: RiceGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5393,7 +5453,7 @@ GameObject:
   - component: {fileID: 2092359724}
   - component: {fileID: 2092359723}
   m_Layer: 0
-  m_Name: Building (1)
+  m_Name: FruitGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5517,6 +5577,7 @@ SceneRoots:
   - {fileID: 1286354598}
   - {fileID: 619394802}
   - {fileID: 652511964}
+  - {fileID: 771868175}
   - {fileID: 1302039716}
   - {fileID: 1777380172}
   - {fileID: 1653478642}
