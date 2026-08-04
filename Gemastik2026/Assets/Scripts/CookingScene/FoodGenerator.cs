@@ -39,7 +39,8 @@ public class FoodGenerator : MonoBehaviour
         rt.offsetMin = Vector2.zero;
         rt.offsetMax = Vector2.zero;
 
-        FoodSO selectedFood = availableFoods[Random.Range(0, availableFoods.Count)];
+        List<FoodSO> foods = IngredientManager.Instance.GetAvailableFoods();
+        FoodSO selectedFood = foods[Random.Range(0, foods.Count)];
 
         DraggableItem drag = obj.GetComponent<DraggableItem>();
         drag.food = selectedFood;

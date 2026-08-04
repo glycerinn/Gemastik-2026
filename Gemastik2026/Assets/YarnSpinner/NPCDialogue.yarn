@@ -1,0 +1,8 @@
+﻿title: NPC1
+---
+NPC1: I cut some beef today! Would you like some?
+-> Sure! 
+    NPC1: Okay then!
+    <<give_reward>>
+-> No thanks
+===

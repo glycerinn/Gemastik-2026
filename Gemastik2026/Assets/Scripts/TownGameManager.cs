@@ -50,7 +50,6 @@ public class TownGameManager : MonoBehaviour
 
     public bool CanEnterSchool()
     {
-        Debug.Log($"Completed: {completedMinigames.Count}/{totalMinigames}");
         return completedMinigames.Count >= totalMinigames;
     }
 
