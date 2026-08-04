@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Trash : MonoBehaviour, IPointerClickHandler
 {
-    public float fallSpeed;
+    float fallSpeed;
     public float fallSpeedMax;
     public float fallSpeedMin;
 

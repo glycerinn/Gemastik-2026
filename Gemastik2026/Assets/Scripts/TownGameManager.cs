@@ -6,9 +6,10 @@ public class TownGameManager : MonoBehaviour
     public static TownGameManager Instance;
 
     [Header("Today's Required Minigames")]
-    public int totalMinigames = 3;
+    public int totalMinigames = 5;
 
     private HashSet<MinigameType> completedMinigames = new HashSet<MinigameType>();
+    
     [Header("Debug")]
     [SerializeField] private List<MinigameType> completedMinigamesDebug = new();
 

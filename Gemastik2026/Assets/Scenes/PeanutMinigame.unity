@@ -166,7 +166,7 @@ MonoBehaviour:
   SortableCount: 10
   spacing: 2
   GameOverScreen: {fileID: 1708145844}
-  targetScore: 30
+  targetScore: 5
   scoreText: {fileID: 1171684587}
 --- !u!4 &235990342
 Transform:
@@ -689,6 +689,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1783472588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1783472590}
+  - component: {fileID: 1783472589}
+  m_Layer: 0
+  m_Name: TownGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1783472589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783472588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37c7a5705a665a41b941f9d47d49613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TownGameManager
+  totalMinigames: 5
+  completedMinigamesDebug: 
+--- !u!4 &1783472590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783472588}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1834086624
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,3 +847,4 @@ SceneRoots:
   - {fileID: 235990342}
   - {fileID: 1072031845}
   - {fileID: 1708145847}
+  - {fileID: 1783472590}

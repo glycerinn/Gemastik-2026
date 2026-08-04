@@ -89,9 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbf9c938da89a8408e2978c0a292ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trash
-  fallSpeed: 3
-  fallSpeedMax: 500
-  fallSpeedMin: 350
+  fallSpeedMax: 700
+  fallSpeedMin: 699
 --- !u!61 &1295333447639495489
 BoxCollider2D:
   m_ObjectHideFlags: 0

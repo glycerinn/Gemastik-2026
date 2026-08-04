@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528bb673907f7fc48bd472ece1dfa396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGameUIEvents
+  minigameType: 0
 --- !u!1 &374175886
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +615,7 @@ MonoBehaviour:
   attemptText: {fileID: 39551803}
   completedPanel: {fileID: 271704536}
   stopAction: {fileID: 8948397699116533980, guid: 165c8b5a578b0c442823e995dba05e98, type: 3}
-  totalAttempts: 50
+  totalAttempts: 5
   speed: 1.5
   biteWaitRange: {x: 0, y: 0}
   randomizeZone: 1
@@ -637,6 +638,52 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.04528, y: -1.3177, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &886951364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 886951366}
+  - component: {fileID: 886951365}
+  m_Layer: 0
+  m_Name: TownGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &886951365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886951364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37c7a5705a665a41b941f9d47d49613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TownGameManager
+  totalMinigames: 5
+  completedMinigamesDebug: 
+--- !u!4 &886951366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886951364}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -897,3 +944,4 @@ SceneRoots:
   - {fileID: 1113503239}
   - {fileID: 666563015}
   - {fileID: 271704538}
+  - {fileID: 886951366}

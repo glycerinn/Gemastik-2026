@@ -10,44 +10,56 @@ public class NewspaperType
 
 public class NewspaperPanel : MonoBehaviour
 {
+    [Header("UI")]
+    public GameObject newspaperWindow;
     public Image panelImage;
+
+    [Header("Newspapers")]
     public NewspaperType[] newspapers;
 
-    void Start()
+    private void Start()
     {
         if (!DayManager.Instance.newspaperShownToday)
         {
             ShowNewspaper();
-
             DayManager.Instance.newspaperShownToday = true;
         }
         else
         {
-            gameObject.SetActive(false);
+            newspaperWindow.SetActive(false);
         }
     }
 
     public void ShowNewspaper()
     {
-        DayManager.Instance.StartNewDay();
+        // Only generate a new day if this newspaper hasn't been shown yet.
+        if (!DayManager.Instance.newspaperShownToday)
+        {
+            DayManager.Instance.StartNewDay();
+        }
 
         foreach (NewspaperType paper in newspapers)
         {
-            if (paper.problem ==
-                DayManager.Instance.currentProblem)
+            if (paper.problem == DayManager.Instance.currentProblem)
             {
                 panelImage.color = paper.color;
                 break;
             }
         }
 
-        gameObject.SetActive(true);
+        newspaperWindow.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void CloseNewspaper()
     {
+        newspaperWindow.SetActive(false);
         Time.timeScale = 1;
-        gameObject.SetActive(false);
+    }
+
+    public void OpenNewspaper()
+    {
+        newspaperWindow.SetActive(true);
+        Time.timeScale = 0;
     }
 }
