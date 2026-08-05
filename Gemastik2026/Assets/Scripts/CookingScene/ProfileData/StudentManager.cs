@@ -5,7 +5,7 @@ public class StudentManager : MonoBehaviour
 {
     [Header("Students")]
     public List<StudentSO> healthyStudents;
-    public List<StudentSO> carbStudents;
+    public List<StudentSO> overweightStudents;
     public List<StudentSO> proteinStudents;
     public List<StudentSO> fatStudents;
 
@@ -67,8 +67,8 @@ public class StudentManager : MonoBehaviour
             case NutritionProblem.Healthy:
                 return healthyStudents;
 
-            case NutritionProblem.CarbMalnutrition:
-                return carbStudents;
+            case NutritionProblem.OverweightMalnutrition:
+                return overweightStudents;
 
             case NutritionProblem.ProteinMalnutrition:
                 return proteinStudents;

@@ -1,7 +1,7 @@
 public enum NutritionProblem
 {
     Healthy,
-    CarbMalnutrition,
+    OverweightMalnutrition,
     ProteinMalnutrition,
     FatMalnutrition
 }

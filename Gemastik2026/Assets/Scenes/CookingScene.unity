@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &131433905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131433907}
+  - component: {fileID: 131433906}
+  m_Layer: 0
+  m_Name: DayManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &131433906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131433905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd8829c3981cc640adc7eeec98998ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayManager
+  currentDay: 1
+  newspaperShownToday: 0
+  currentProblem: 0
+--- !u!4 &131433907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131433905}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 832.6879, y: 369.6137, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &181804876
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +391,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343973433}
   m_CullTransparentMesh: 1
+--- !u!1 &416956695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416956697}
+  - component: {fileID: 416956696}
+  m_Layer: 0
+  m_Name: IngredientManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &416956696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416956695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424c53f1c094e5b44b8a5713ea712e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IngredientManager
+  startingFoods:
+  - {fileID: 11400000, guid: 8d8ffd16c4a595c4f9c29b0f27ebae68, type: 2}
+  - {fileID: 11400000, guid: 3d153121e2a60e14283b3b99618a08d3, type: 2}
+  - {fileID: 11400000, guid: ef71791b286f8c941bc1ff49600f903c, type: 2}
+  - {fileID: 11400000, guid: 122b84777baf745449236dcdd15f491a, type: 2}
+  - {fileID: 11400000, guid: 5952a668e0eeecc47b16da9fecac9672, type: 2}
+--- !u!4 &416956697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416956695}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.37257, y: -1.89148, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &451856292
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,11 +733,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5aef92bd5d8affd458e47b9d3a46aaf9, type: 2}
   - {fileID: 11400000, guid: c88d51f5be9c1254f85e2a3579bfd914, type: 2}
   - {fileID: 11400000, guid: 57d543e590def6e488b043d35789af87, type: 2}
-  carbStudents:
-  - {fileID: 11400000, guid: fb2651fef0f316b4a808ca3fd0f54921, type: 2}
-  - {fileID: 11400000, guid: b138845c44d67364290dc54d8b061772, type: 2}
-  - {fileID: 11400000, guid: 91a803620a91e1f42af40da12990025e, type: 2}
-  - {fileID: 11400000, guid: 6cc19576a3f1a8947a681aa0def7c74c, type: 2}
+  overweightStudents: []
   proteinStudents:
   - {fileID: 11400000, guid: 2510dc52c010e7749b26278431dd2ea6, type: 2}
   - {fileID: 11400000, guid: 31abeac213e3eed409239109de164637, type: 2}
@@ -4518,3 +4611,5 @@ SceneRoots:
   - {fileID: 181804879}
   - {fileID: 1444696125}
   - {fileID: 1117699188}
+  - {fileID: 131433907}
+  - {fileID: 416956697}

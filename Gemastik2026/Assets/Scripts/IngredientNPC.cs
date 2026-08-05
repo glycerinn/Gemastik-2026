@@ -16,9 +16,19 @@ public class IngredientNPC : MonoBehaviour
     public Transform player;
     public float interactDistance = 2f;
 
+    [Header("Highlight")]
+    public Color normalColor = Color.white;
+    public Color highlightColor = Color.yellow;
+
+    private SpriteRenderer spriteRenderer;
+
     public void Awake()
     {
         dialogueRunner.AddCommandHandler("give_reward", () => {GiveReward();});
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            spriteRenderer.color = normalColor;
+
         Debug.Log("Registered StartGame");
     } 
 
@@ -28,6 +38,13 @@ public class IngredientNPC : MonoBehaviour
             return;
 
         float distance = Vector2.Distance(transform.position, player.position);
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = distance <= interactDistance
+                ? highlightColor
+                : normalColor;
+        }
 
         if (distance <= interactDistance && Input.GetKeyDown(KeyCode.E))
         {

@@ -36,7 +36,7 @@ public class StudentProfileUI : MonoBehaviour
             case NutritionProblem.Healthy:
                 return "Healthy diet. Maintain a balanced meal.";
 
-            case NutritionProblem.CarbMalnutrition:
+            case NutritionProblem.OverweightMalnutrition:
                 return "Low carbohydrate intake. Increase carbohydrates.";
 
             case NutritionProblem.ProteinMalnutrition:

@@ -7,7 +7,7 @@ public static class NutritionTargets
             case NutritionProblem.Healthy:
                 return new NutritionTarget(50, 30, 20);
 
-            case NutritionProblem.CarbMalnutrition:
+            case NutritionProblem.OverweightMalnutrition:
                 return new NutritionTarget(30, 45, 25);
 
             case NutritionProblem.ProteinMalnutrition:
