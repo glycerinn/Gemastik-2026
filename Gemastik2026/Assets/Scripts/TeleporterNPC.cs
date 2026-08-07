@@ -65,21 +65,23 @@ public class TeleporterNPC : MonoBehaviour
     [YarnCommand("teleport_player")]
     public static void TeleportPlayer(string targetPointName)
     {
-        // Cari titik tujuan berdasarkan nama objeknya
         GameObject targetPoint = GameObject.Find(targetPointName);
-
-        // Cari player berdasarkan Tag
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
         if (targetPoint != null && playerObj != null)
         {
-            // Pindahkan posisi player ke titik tujuan
-            playerObj.transform.position = targetPoint.transform.position;
-            Debug.Log($"[Teleporter] Player berhasil dipindahkan ke: {targetPointName}");
-        }
-        else
-        {
-            Debug.LogWarning($"[Teleporter Error] Gagal pindah! Titik tujuan '{targetPointName}' tidak ditemukan.");
+            if (FadeManager.Instance != null)
+            {
+                // Jika log ini muncul, berarti FadeManager terbaca dengan baik
+                Debug.Log("FADEMANAGER DITEMUKAN! Memulai coroutine animasi fade...");
+                FadeManager.Instance.TeleportWithFade(playerObj.transform, targetPoint.transform.position);
+            }
+            else
+            {
+                // Jika log ini muncul, ini ALASAN MENGAPA player langsung teleport!
+                Debug.LogError("FADEMANAGER NULL! Player dipindah paksa secara instan.");
+                playerObj.transform.position = targetPoint.transform.position;
+            }
         }
     }
 }

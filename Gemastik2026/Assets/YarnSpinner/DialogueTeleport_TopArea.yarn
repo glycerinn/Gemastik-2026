@@ -3,7 +3,7 @@
 NPC: Yo nigga, wanna go down to the villag?
 -> Shure, y not.
     NPC: Alr broe.
-    <<teleport TeleportManager Point_Desa>>
+    <<teleport_player Point_Desa>>
 -> Fuh no, i aint wanna help the kids now
     NPC: Fuckass.
 ===

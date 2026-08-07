@@ -3,10 +3,10 @@
 NPC: Yo nigga, wher u wana go?
 -> le montein
     NPC: Alr broe.
-    <<teleport TeleportManager Point_Gunung>>
+    <<teleport_player Point_Gunung>>
 -> le lake
     NPC: Alr broe.
-    <<teleport TeleportManager Point_SawahDanau>>
+    <<teleport_player Point_SawahDanau>>
 -> idk broe
     NPC: Fuckass.
 ===
