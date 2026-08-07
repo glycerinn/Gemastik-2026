@@ -1,0 +1,12 @@
+﻿title: Teleporter2
+---
+NPC: Yo nigga, wher u wana go?
+-> le montein
+    NPC: Alr broe.
+    <<teleport TeleportManager Point_Gunung>>
+-> le lake
+    NPC: Alr broe.
+    <<teleport TeleportManager Point_SawahDanau>>
+-> idk broe
+    NPC: Fuckass.
+===

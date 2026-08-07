@@ -1,0 +1,9 @@
+﻿title: Teleporter3
+---
+NPC: Yo nigga, wanna go up to the villag?
+-> Shure, y not.
+    NPC: Alr broe.
+    <<teleport TeleportManager Point_Desa>>
+-> Fuh no.
+    NPC: Fuckass.
+===
