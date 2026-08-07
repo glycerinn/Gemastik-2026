@@ -24,7 +24,20 @@ public class MainMenuEvents : MonoBehaviour
     private void OnPlayGame(ClickEvent evt)
     {
         Debug.Log("pressed");
-        SceneManager.LoadScene("SideScroller");
+
+        // Pastikan waktu berjalan normal
+        Time.timeScale = 1f;
+
+        // Panggil FadeManager untuk melakukan transisi fade hitam sebelum masuk ke game
+        if (FadeManager.Instance != null)
+        {
+            FadeManager.Instance.LoadSceneWithFade("SideScroller");
+        }
+        else
+        {
+            // Fallback jika FadeManager belum terpasang di Main Menu
+            SceneManager.LoadScene("SideScroller");
+        }
     }
 
     private void OnDisable()
