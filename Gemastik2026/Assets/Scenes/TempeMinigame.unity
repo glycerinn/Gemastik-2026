@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TownGameManager
   totalMinigames: 5
   completedMinigamesDebug: 
+  collectedIngredients: []
 --- !u!4 &31917051
 Transform:
   m_ObjectHideFlags: 0

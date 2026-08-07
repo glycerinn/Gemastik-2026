@@ -14,7 +14,10 @@ public class MiniGameUIEvents : MonoBehaviour
         uIDocument = GetComponent<UIDocument>();
 
         button = uIDocument.rootVisualElement.Q("BackButton") as Button;
-        button.RegisterCallback<ClickEvent>(OnPlayGame);
+        if (button != null)
+        {
+            button.RegisterCallback<ClickEvent>(OnPlayGame);
+        }
     }
 
     private void Start()
@@ -25,14 +28,30 @@ public class MiniGameUIEvents : MonoBehaviour
     private void OnPlayGame(ClickEvent evt)
     {
         Debug.Log("pressed");
+
+        // Simpan data game terlebih dahulu
         TownGameManager.Instance.CollectIngredient(rewardFood);
         TownGameManager.Instance.CompleteMinigame(minigameType);
-        SceneManager.LoadScene("SideScroller");
         Time.timeScale = 1f;
+
+        // PERUBAHAN DI SINI:
+        // Gunakan FadeManager untuk memicu animasi layar hitam, baru kemudian pindah scene
+        if (FadeManager.Instance != null)
+        {
+            FadeManager.Instance.LoadSceneWithFade("SideScroller");
+        }
+        else
+        {
+            // Fallback jika FadeManager tidak ditemukan di scene minigame
+            SceneManager.LoadScene("SideScroller");
+        }
     }
 
     private void OnDisable()
     {
-        button.UnregisterCallback<ClickEvent>(OnPlayGame);
+        if (button != null)
+        {
+            button.UnregisterCallback<ClickEvent>(OnPlayGame);
+        }
     }
 }

@@ -171,6 +171,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   outlineMaterial: {fileID: 2100000, guid: f7a854484bc574c4baa30e81f6ba09d6, type: 2}
   sceneName: TempeMinigame
+  fadeDuration: 0.8
 --- !u!61 &16955888
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -866,6 +867,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   outlineMaterial: {fileID: 2100000, guid: f7a854484bc574c4baa30e81f6ba09d6, type: 2}
   sceneName: RiceMinigame
+  fadeDuration: 0.8
 --- !u!61 &161164552
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1984,6 +1986,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   outlineMaterial: {fileID: 2100000, guid: f7a854484bc574c4baa30e81f6ba09d6, type: 2}
   sceneName: PeanutMinigame
+  fadeDuration: 0.8
 --- !u!61 &564926115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3199,7 +3202,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1495065441
   m_SortingLayer: -2
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8827552752023460696, guid: f9c4037d868b3474cbf4a0a22ed9def4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4456,7 +4459,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1495065441
   m_SortingLayer: -2
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8827552752023460696, guid: f9c4037d868b3474cbf4a0a22ed9def4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4796,6 +4799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FadeManager
   fadeCanvasGroup: {fileID: 939829988}
   fadeDuration: 1
+  holdBlackDuration: 1
 --- !u!1 &947081958
 GameObject:
   m_ObjectHideFlags: 0
@@ -5446,6 +5450,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   outlineMaterial: {fileID: 2100000, guid: f7a854484bc574c4baa30e81f6ba09d6, type: 2}
   sceneName: FishMinigame
+  fadeDuration: 0.8
 --- !u!61 &1076212279
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7376,6 +7381,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   outlineMaterial: {fileID: 2100000, guid: f7a854484bc574c4baa30e81f6ba09d6, type: 2}
   sceneName: FruitMinigame
+  fadeDuration: 0.8
 --- !u!61 &1328054912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9489,6 +9495,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   outlineMaterial: {fileID: 2100000, guid: f7a854484bc574c4baa30e81f6ba09d6, type: 2}
   sceneName: CookingScene
+  fadeDuration: 0.8
 --- !u!61 &1723735534
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12240,7 +12247,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1495065441
   m_SortingLayer: -2
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8827552752023460696, guid: f9c4037d868b3474cbf4a0a22ed9def4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
