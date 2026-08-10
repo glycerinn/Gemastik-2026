@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,7 +11,12 @@ public class RiceGameManager : MonoBehaviour
     public GameObject winPanel;
     public int targetScore = 30;
 
+    [Header("Polishing Settings")]
+    public ParticleSystem harvestParticlePrefab;
+    public Color particleColor = new Color(1f, 0.9f, 0.2f);
+
     int score;
+    private bool isInputLocked = false;
 
     private void Awake()
     {
@@ -25,144 +31,119 @@ public class RiceGameManager : MonoBehaviour
 
     void InitializeField()
     {
-        // Give every rice a random stage (Seed, Young, Nearing, or Ready)
         foreach (Rice rice in riceList)
         {
-            Rice.RiceStage randomStage = (Rice.RiceStage)Random.Range(0, 4);
-            rice.SetStage(randomStage);
-        }
-
-        // Only guarantee that at least one rice starts Ready
-        bool hasReady = false;
-
-        foreach (Rice rice in riceList)
-        {
-            if (rice.stage == Rice.RiceStage.Ready)
+            if (rice != null)
             {
-                hasReady = true;
-                break;
+                Rice.RiceStage randomStage = (Rice.RiceStage)Random.Range(0, 4);
+                rice.SetStage(randomStage);
             }
         }
 
-        if (!hasReady)
-        {
-            riceList[Random.Range(0, riceList.Count)].SetStage(Rice.RiceStage.Ready);
-        }
+        CheckAndForceReadyRice();
     }
 
     public void OnRiceClicked(Rice clickedRice)
     {
-        if(clickedRice.stage == Rice.RiceStage.Ready)
+        if (clickedRice == null) return;
+        if (isInputLocked) return;
+
+        if (clickedRice.stage == Rice.RiceStage.Ready)
         {
             score++;
-        }
+            UpdateUI();
 
-        clickedRice.SetStage(Rice.RiceStage.Seed);
-        foreach(Rice rice in riceList)
-        {
-            if(rice != clickedRice)
-                rice.Grow();
-        }
+            isInputLocked = true;
 
-        EnsurePlayable();
-        UpdateUI();
+            // Memanggil partikel dan menjadikannya anak (child) dari padi yang diklik
+            SpawnHarvestParticle(clickedRice.transform.position, clickedRice.transform);
 
-        if(score >= targetScore)
-        {
-            winPanel.SetActive(true);
+            clickedRice.PlayJuicyHarvest(() =>
+            {
+                if (score >= targetScore)
+                {
+                    if (winPanel != null)
+                        winPanel.SetActive(true);
+                }
+                else
+                {
+                    GrowRandomRice();
+                }
+
+                isInputLocked = false;
+            });
         }
     }
 
     void UpdateUI()
     {
-        scoreText.text = "Rice : " + score + " / " + targetScore;
+        if (scoreText != null)
+            scoreText.text = $"Panen: {score} / {targetScore}";
     }
 
-    void EnsurePlayable()
+    void GrowRandomRice()
+    {
+        foreach (Rice rice in riceList)
+        {
+            if (rice != null) rice.Grow();
+        }
+        CheckAndForceReadyRice();
+    }
+
+    // --- PERBAIKAN LOGIKA SOFTLOCK ---
+    void CheckAndForceReadyRice()
     {
         bool hasReady = false;
-        bool hasNearing = false;
-
-        foreach(Rice rice in riceList)
+        foreach (Rice rice in riceList)
         {
-            if(rice.stage == Rice.RiceStage.Ready)
-                hasReady = true;
-
-            if(rice.stage == Rice.RiceStage.Nearing)
-                hasNearing = true;
+            if (rice != null && rice.stage == Rice.RiceStage.Ready) { hasReady = true; break; }
         }
 
-        if(!hasReady)
+        // Jika BENAR-BENAR tidak ada padi yang Ready, kita harus paksa 1 padi menjadi Ready
+        if (!hasReady)
         {
-            Rice candidate = null;
+            List<Rice> nearingList = new List<Rice>();
+            List<Rice> youngList = new List<Rice>();
+            List<Rice> seedList = new List<Rice>();
 
-            foreach(Rice rice in riceList)
+            foreach (Rice rice in riceList)
             {
-                if(rice.stage == Rice.RiceStage.Nearing)
-                {
-                    candidate = rice;
-                    break;
-                }
+                if (rice == null) continue;
+                if (rice.stage == Rice.RiceStage.Nearing) nearingList.Add(rice);
+                else if (rice.stage == Rice.RiceStage.Young) youngList.Add(rice);
+                else if (rice.stage == Rice.RiceStage.Seed) seedList.Add(rice);
             }
 
-            if(candidate == null)
+            Rice chosenRice = null;
+
+            // Prioritaskan padi yang sudah hampir matang (Nearing)
+            if (nearingList.Count > 0) chosenRice = nearingList[Random.Range(0, nearingList.Count)];
+            else if (youngList.Count > 0) chosenRice = youngList[Random.Range(0, youngList.Count)];
+            else if (seedList.Count > 0) chosenRice = seedList[Random.Range(0, seedList.Count)];
+
+            // Paksa padi yang terpilih langsung menjadi Ready agar game bisa dilanjutkan!
+            if (chosenRice != null)
             {
-                foreach(Rice rice in riceList)
-                {
-                    if(rice.stage == Rice.RiceStage.Young)
-                    {
-                        candidate = rice;
-                        break;
-                    }
-                }
-            }
-
-            if(candidate == null)
-            {
-                candidate = riceList[0];
-            }
-
-            candidate.SetStage(Rice.RiceStage.Ready);
-        }
-
-        hasNearing = false;
-
-        foreach(Rice rice in riceList)
-        {
-            if(rice.stage == Rice.RiceStage.Nearing)
-            {
-                hasNearing = true;
-                break;
+                chosenRice.SetStage(Rice.RiceStage.Ready);
             }
         }
+    }
 
-        if(!hasNearing)
+    // --- PERBAIKAN MUNCULNYA PARTIKEL ---
+    void SpawnHarvestParticle(Vector3 position, Transform parentObject)
+    {
+        if (harvestParticlePrefab != null)
         {
-            Rice candidate = null;
+            // Spawn partikel dan jadikan anak dari padi agar terbawa oleh skala Canvas
+            ParticleSystem effect = Instantiate(harvestParticlePrefab, position, Quaternion.identity, parentObject);
 
-            foreach(Rice rice in riceList)
-            {
-                if(rice.stage == Rice.RiceStage.Young)
-                {
-                    candidate = rice;
-                    break;
-                }
-            }
+            // Dorong sedikit partikelnya ke arah kamera agar tidak tertimpa gambar UI
+            effect.transform.localPosition = new Vector3(0, 0, -50f);
 
-            if(candidate == null)
-            {
-                foreach(Rice rice in riceList)
-                {
-                    if(rice.stage == Rice.RiceStage.Seed)
-                    {
-                        candidate = rice;
-                        break;
-                    }
-                }
-            }
+            var mainModule = effect.main;
+            mainModule.startColor = particleColor;
 
-            if(candidate != null)
-                candidate.SetStage(Rice.RiceStage.Nearing);
+            effect.Play();
         }
     }
 }
