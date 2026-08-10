@@ -1,9 +1,12 @@
 ﻿title: Teleporter3
 ---
-NPC: Yo nigga, wanna go up to the villag?
--> Shure, y not.
-    NPC: Alr broe.
-    <<teleport_player Point_Desa>>
--> Fuh no.
-    NPC: Fuckass.
+NPC: Mau pergi ke mana hari ini?
+-> Ke Area Pegunungan
+    NPC: Baik, mari berangkat!
+    <<load_scene SideScroller>>
+-> Ke Desa
+    NPC: Siap, meluncur ke Desa!
+    <<load_scene VillageScene>>
+-> Gak jadi
+    NPC: Oke, sampai jumpa!
 ===

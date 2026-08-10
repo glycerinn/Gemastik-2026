@@ -1,12 +1,12 @@
 ﻿title: Teleporter2
 ---
-NPC: Yo nigga, wher u wana go?
--> le montein
-    NPC: Alr broe.
-    <<teleport_player Point_Gunung>>
--> le lake
-    NPC: Alr broe.
-    <<teleport_player Point_SawahDanau>>
--> idk broe
-    NPC: Fuckass.
+NPC: Mau pergi ke mana hari ini?
+-> Ke Area Pegunungan
+    NPC: Baik, mari berangkat!
+    <<load_scene SideScroller>>
+-> Ke Area Danau
+    NPC: Otw Danau.
+    <<load_scene LakeScene>>
+-> Gak jadi
+    NPC: Oke, sampai jumpa!
 ===

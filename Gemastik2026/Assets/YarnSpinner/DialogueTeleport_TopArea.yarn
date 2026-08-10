@@ -1,9 +1,12 @@
 ﻿title: Teleporter1
 ---
-NPC: Yo nigga, wanna go down to the villag?
--> Shure, y not.
-    NPC: Alr broe.
-    <<teleport_player Point_Desa>>
--> Fuh no, i aint wanna help the kids now
-    NPC: Fuckass.
+NPC: Mau pergi ke mana hari ini?
+-> Ke Desa
+    NPC: Siap, meluncur ke Desa!
+    <<load_scene VillageScene>>
+-> Ke Area Danau
+    NPC: Otw Danau.
+    <<load_scene LakeScene>>
+-> Gak jadi
+    NPC: Oke, sampai jumpa!
 ===
