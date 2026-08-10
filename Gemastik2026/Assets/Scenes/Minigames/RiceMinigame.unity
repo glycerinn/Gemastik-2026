@@ -290,13 +290,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 265914067}
-        m_TargetAssemblyTypeName: Rice, Assembly-CSharp
-        m_MethodName: ClickRice
-        m_Mode: 1
+      - m_Target: {fileID: 316565762}
+        m_TargetAssemblyTypeName: RiceGameManager, Assembly-CSharp
+        m_MethodName: OnRiceClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 265914067}
+          m_ObjectArgumentAssemblyTypeName: Rice, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -392,7 +392,9 @@ MonoBehaviour:
   - {fileID: 2144187861}
   scoreText: {fileID: 1366461062}
   winPanel: {fileID: 261472401}
-  targetScore: 5
+  targetScore: 50
+  harvestParticlePrefab: {fileID: 7525507439652850336, guid: 4ecf4c12ee3a03d40886f41eba77ba57, type: 3}
+  particleColor: {r: 1, g: 0.9, b: 0.2, a: 1}
 --- !u!1 &489216468
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,13 +496,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 489216470}
-        m_TargetAssemblyTypeName: Rice, Assembly-CSharp
-        m_MethodName: ClickRice
-        m_Mode: 1
+      - m_Target: {fileID: 316565762}
+        m_TargetAssemblyTypeName: RiceGameManager, Assembly-CSharp
+        m_MethodName: OnRiceClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 489216470}
+          m_ObjectArgumentAssemblyTypeName: Rice, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -685,13 +687,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 582211337}
-        m_TargetAssemblyTypeName: Rice, Assembly-CSharp
-        m_MethodName: ClickRice
-        m_Mode: 1
+      - m_Target: {fileID: 316565762}
+        m_TargetAssemblyTypeName: RiceGameManager, Assembly-CSharp
+        m_MethodName: OnRiceClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 582211337}
+          m_ObjectArgumentAssemblyTypeName: Rice, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -746,6 +748,7 @@ GameObject:
   - component: {fileID: 1117261685}
   - component: {fileID: 1117261684}
   - component: {fileID: 1117261683}
+  - component: {fileID: 1117261686}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -827,6 +830,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117261686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117261682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &1366461060
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,6 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TownGameManager
   totalMinigames: 5
   completedMinigamesDebug: 
+  collectedIngredients: []
 --- !u!4 &1481333490
 Transform:
   m_ObjectHideFlags: 0
@@ -1078,8 +1126,8 @@ Canvas:
   m_GameObject: {fileID: 1618083762}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1117261684}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1215,13 +1263,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1622829341}
-        m_TargetAssemblyTypeName: Rice, Assembly-CSharp
-        m_MethodName: ClickRice
-        m_Mode: 1
+      - m_Target: {fileID: 316565762}
+        m_TargetAssemblyTypeName: RiceGameManager, Assembly-CSharp
+        m_MethodName: OnRiceClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1622829341}
+          m_ObjectArgumentAssemblyTypeName: Rice, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1445,13 +1493,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2144187861}
-        m_TargetAssemblyTypeName: Rice, Assembly-CSharp
-        m_MethodName: ClickRice
-        m_Mode: 1
+      - m_Target: {fileID: 316565762}
+        m_TargetAssemblyTypeName: RiceGameManager, Assembly-CSharp
+        m_MethodName: OnRiceClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2144187861}
+          m_ObjectArgumentAssemblyTypeName: Rice, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
