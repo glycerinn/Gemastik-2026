@@ -1,8 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Transform originalParent;
     private Canvas canvas;
@@ -10,6 +11,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public ChoiceSlot homeSlot;
     public FoodSO food;
+
+    private bool isBeingRemoved = false;
 
     private void Awake()
     {
@@ -23,20 +26,73 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Debug.LogError("No Canvas found!");
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // Deteksi Double Click (clickCount == 2)
+        if (eventData.clickCount == 2 && !isBeingRemoved)
+        {
+            PlateSlot parentPlate = transform.parent.GetComponent<PlateSlot>();
+
+            // Fitur ini hanya bekerja jika item berada di atas Piring
+            if (parentPlate != null)
+            {
+                StartCoroutine(RemoveFromPlateRoutine(parentPlate));
+            }
+        }
+    }
+
+    private IEnumerator RemoveFromPlateRoutine(PlateSlot plateSlot)
+    {
+        isBeingRemoved = true;
+
+        // Kosongkan slot piring & update sistem gizi secara instan
+        plateSlot.currentItem = null;
+
+        PlateManager plateMgr = FindFirstObjectByType<PlateManager>();
+        if (plateMgr != null) plateMgr.CalculatePlate();
+
+        CookingGameManager gameMgr = FindFirstObjectByType<CookingGameManager>();
+        if (gameMgr != null) gameMgr.CheckPlateFilled();
+
+        // Matikan interaksi mouse agar tidak bisa ditarik saat sedang animasi hilang
+        canvasGroup.blocksRaycasts = false;
+
+        // Transisi Polish: Memudar & Mengecil
+        float time = 0;
+        float duration = 0.2f;
+        Vector3 startScale = transform.localScale;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float progress = time / duration;
+
+            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, progress);
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, progress);
+
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (isBeingRemoved) return;
+
         originalParent = transform.parent;
 
-        // [KODE BARU] Cek apakah item ini diangkat dari piring (PlateSlot)
+        // Jika diangkat dari piring, bersihkan data slot piring lama
         PlateSlot previousSlot = originalParent.GetComponent<PlateSlot>();
         if (previousSlot != null)
         {
-            // Kosongkan data di slot piring lama karena makanannya sedang diangkat
             previousSlot.currentItem = null;
 
-            // Perbarui perhitungan nilai nutrisi dan tombol Submit secara real-time
-            FindFirstObjectByType<PlateManager>().CalculatePlate();
-            FindFirstObjectByType<CookingGameManager>().CheckPlateFilled();
+            PlateManager plateMgr = FindFirstObjectByType<PlateManager>();
+            if (plateMgr != null) plateMgr.CalculatePlate();
+
+            CookingGameManager gameMgr = FindFirstObjectByType<CookingGameManager>();
+            if (gameMgr != null) gameMgr.CheckPlateFilled();
         }
 
         transform.SetParent(canvas.transform);
@@ -45,29 +101,32 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isBeingRemoved) return;
         transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (isBeingRemoved) return;
+
         canvasGroup.blocksRaycasts = true;
 
-        // Jika item dilepas di tempat yang BUKAN kotak piring yang kosong (masih ngambang di UI)
+        // Jika dilepas di luar piring, kembalikan ke tempat asal
         if (transform.parent == canvas.transform)
         {
-            // Kembalikan ke tempat asalnya semula
             transform.SetParent(originalParent);
             transform.localPosition = Vector3.zero;
 
-            // [KODE BARU] Jika asalnya dari piring, pulihkan kembali datanya ke piring tersebut
             PlateSlot previousSlot = originalParent.GetComponent<PlateSlot>();
             if (previousSlot != null)
             {
                 previousSlot.currentItem = this;
 
-                // Perbarui lagi kalkulasi nutrisi karena makanan dikembalikan
-                FindFirstObjectByType<PlateManager>().CalculatePlate();
-                FindFirstObjectByType<CookingGameManager>().CheckPlateFilled();
+                PlateManager plateMgr = FindFirstObjectByType<PlateManager>();
+                if (plateMgr != null) plateMgr.CalculatePlate();
+
+                CookingGameManager gameMgr = FindFirstObjectByType<CookingGameManager>();
+                if (gameMgr != null) gameMgr.CheckPlateFilled();
             }
         }
     }

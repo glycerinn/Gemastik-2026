@@ -101,7 +101,7 @@ public class FoodGenerator : MonoBehaviour
         }
 
         // TUNGGU: Animasi pudar selesai + Jeda 1 detik tambahan
-        yield return new WaitForSeconds(transitionDuration + 1f);
+        yield return new WaitForSeconds(transitionDuration + 0.5f);
 
         // 2. Munculkan makanan baru di SEMUA slot
         foreach (ChoiceSlot slot in choiceSlots)

@@ -26,7 +26,6 @@ public class CookingGameManager : MonoBehaviour
 
     private void Start()
     {
-        // Hilangkan tombol saat mulai via alpha, jangan SetActive(false)
         submitCanvasGroup.alpha = 0f;
         submitCanvasGroup.interactable = false;
         submitCanvasGroup.blocksRaycasts = false;
@@ -67,7 +66,7 @@ public class CookingGameManager : MonoBehaviour
     {
         float startAlpha = submitCanvasGroup.alpha;
         float time = 0;
-        float duration = 0.3f; // Kecepatan muncul tombol
+        float duration = 0.3f;
 
         if (interactable) submitCanvasGroup.blocksRaycasts = true;
 
@@ -78,7 +77,6 @@ public class CookingGameManager : MonoBehaviour
 
             submitCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, progress);
 
-            // Efek membesar (pop-up)
             float scale = Mathf.Lerp(startAlpha == 0 ? 0.8f : 1f, targetAlpha == 1 ? 1f : 0.8f, progress);
             submitButton.transform.localScale = new Vector3(scale, scale, 1f);
 
@@ -105,7 +103,6 @@ public class CookingGameManager : MonoBehaviour
         plateManager.ClearPlate();
         foodGenerator.ResetChoices();
 
-        // Pudar tombol submit
         isSubmitVisible = false;
         FadeSubmitButton(0f, false);
 
