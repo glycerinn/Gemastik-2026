@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class PieChart : MonoBehaviour
     public TMP_Text proteinText;
     public TMP_Text fatText;
 
+    private Coroutine chartCoroutine;
+
     public void SetChart(NutritionTarget target)
     {
         float carbs = target.carbs;
@@ -17,13 +20,11 @@ public class PieChart : MonoBehaviour
         float fat = target.fat;
 
         float total = carbs + protein + fat;
-
         carbs /= total;
         protein /= total;
         fat /= total;
 
         float angle = 0;
-
         carbSlice.SetSlice(carbs, angle);
         angle -= carbs * 360f;
 
@@ -32,32 +33,45 @@ public class PieChart : MonoBehaviour
 
         fatSlice.SetSlice(fat, angle);
 
-        float start = 0;
-        PositionLabel(carbText.rectTransform, start, target.carbs * 3.6f, 70f);
-
-        start += target.carbs * 3.6f;
-        PositionLabel(proteinText.rectTransform, start, target.protein * 3.6f, 70f);
-
-        start += target.protein * 3.6f;
-        PositionLabel(fatText.rectTransform, start, target.fat * 3.6f, 70f);
-
         carbText.text = $"C{target.carbs}%";
         proteinText.text = $"P{target.protein}%";
         fatText.text = $"F{target.fat}%";
+
+        // Jalankan animasi pergerakan label teks
+        if (chartCoroutine != null) StopCoroutine(chartCoroutine);
+        chartCoroutine = StartCoroutine(MoveLabelsRoutine(target));
     }
 
-    void PositionLabel(RectTransform label, float startAngle, float sweepAngle, float radius)
+    private IEnumerator MoveLabelsRoutine(NutritionTarget target)
+    {
+        Vector2 startCarbPos = carbText.rectTransform.anchoredPosition;
+        Vector2 startProteinPos = proteinText.rectTransform.anchoredPosition;
+        Vector2 startFatPos = fatText.rectTransform.anchoredPosition;
+
+        Vector2 targetCarbPos = GetLabelPosition(0, target.carbs * 3.6f, 70f);
+        Vector2 targetProteinPos = GetLabelPosition(target.carbs * 3.6f, target.protein * 3.6f, 70f);
+        Vector2 targetFatPos = GetLabelPosition((target.carbs + target.protein) * 3.6f, target.fat * 3.6f, 70f);
+
+        float time = 0;
+        float duration = 0.5f; // Samakan dengan durasi PieSlice
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float p = Mathf.SmoothStep(0, 1, time / duration);
+
+            carbText.rectTransform.anchoredPosition = Vector2.Lerp(startCarbPos, targetCarbPos, p);
+            proteinText.rectTransform.anchoredPosition = Vector2.Lerp(startProteinPos, targetProteinPos, p);
+            fatText.rectTransform.anchoredPosition = Vector2.Lerp(startFatPos, targetFatPos, p);
+
+            yield return null;
+        }
+    }
+
+    private Vector2 GetLabelPosition(float startAngle, float sweepAngle, float radius)
     {
         float angle = -(startAngle + sweepAngle / 2f) - 90f;
-
         float radians = angle * Mathf.Deg2Rad;
-
-        Vector2 pos = new Vector2(
-            Mathf.Cos(radians),
-            Mathf.Sin(radians)
-        ) * radius;
-
-        label.anchoredPosition = pos;
-        label.localRotation = Quaternion.identity;
+        return new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * radius;
     }
 }

@@ -32,7 +32,7 @@ public class GateQueue : MonoBehaviour
 
         Sortable currentItem = Sortables_[0];
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             Vector3 targetPos = currentItem.transform.position + Vector3.up * 6;
             if (currentItem.GetSortableType() == Sortable.SortableType.Fish)
@@ -47,7 +47,7 @@ public class GateQueue : MonoBehaviour
             StartCoroutine(SortAndShift(currentItem, targetPos));
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             Vector3 targetPos = currentItem.transform.position + Vector3.down * 5;
             if (currentItem.GetSortableType() == Sortable.SortableType.Trash)

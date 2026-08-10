@@ -9,8 +9,10 @@ public class FadeManager : MonoBehaviour
 
     [Header("Pengaturan Fade")]
     public CanvasGroup fadeCanvasGroup;
-    public float fadeDuration = 0.8f;
+    public float fadeDuration = 2.0f; // Menggunakan durasi 2 detik sesuai keinginan Anda
     public float holdBlackDuration = 0.3f;
+
+    private Coroutine currentFadeCoroutine;
 
     private void Awake()
     {
@@ -18,6 +20,14 @@ public class FadeManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // FITUR UTAMA: Saat game pertama kali dinyalakan, 
+            // kunci layar ke warna hitam pekat (alpha = 1) sebelum frame pertama digambar
+            if (fadeCanvasGroup != null)
+            {
+                fadeCanvasGroup.alpha = 1f;
+                fadeCanvasGroup.blocksRaycasts = true;
+            }
         }
         else
         {
@@ -28,44 +38,43 @@ public class FadeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // Mendaftarkan event setiap kali scene baru selesai dimuat
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        // Membersihkan event
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Start()
     {
-        // Saat game pertama kali dinyalakan, pastikan layar langsung terang
+        // Saat game pertama kali dijalankan (Main Menu), 
+        // jalankan Fade In dari Hitam (1) ke Terang (0)
         if (fadeCanvasGroup != null)
         {
-            fadeCanvasGroup.alpha = 0f;
-            fadeCanvasGroup.blocksRaycasts = false;
+            fadeCanvasGroup.alpha = 1f;
+            StartFade(0f);
         }
     }
 
     // Fungsi ini otomatis terpanggil SETIAP KALI pindah scene berhasil dilakukan
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Cari otomatis CanvasGroup jika hilang / belum terhubung di scene baru
+        // Cari CanvasGroup otomatis jika belum terhubung
         if (fadeCanvasGroup == null)
         {
-            GameObject canvasObj = GameObject.FindWithTag("FadeCanvas"); // Pastikan Canvas Anda ber-tag "FadeCanvas" atau dicari manual
+            GameObject canvasObj = GameObject.FindWithTag("FadeCanvas");
             if (canvasObj != null)
             {
                 fadeCanvasGroup = canvasObj.GetComponent<CanvasGroup>();
             }
         }
 
-        // Jika CanvasGroup ada, set layar ke posisi hitam pekat (1f) lalu lakukan Fade In (menuju 0f)
+        // Jalankan Fade In setiap kali berpindah ke scene baru
         if (fadeCanvasGroup != null)
         {
-            fadeCanvasGroup.alpha = 1f;
-            StartCoroutine(FadeRoutine(0f));
+            fadeCanvasGroup.alpha = 1f; // Pastikan layar hitam pekat terlebih dahulu
+            StartFade(0f);              // Perlahan menjadi terang
         }
     }
 
@@ -105,19 +114,49 @@ public class FadeManager : MonoBehaviour
         yield return StartCoroutine(FadeRoutine(0f));
     }
 
+    public void LoadSceneWithFade(string sceneName)
+    {
+        StartCoroutine(FadeAndLoadSceneRoutine(sceneName));
+    }
+
+    private IEnumerator FadeAndLoadSceneRoutine(string sceneName)
+    {
+        // 1. Fade Out ke hitam
+        yield return StartCoroutine(FadeRoutine(1f));
+
+        // 2. Beri jeda sejenak saat hitam pekat
+        yield return new WaitForSecondsRealtime(holdBlackDuration);
+
+        // 3. Pindah Scene (OnSceneLoaded akan otomatis mengambil alih setelah ini)
+        SceneManager.LoadScene(sceneName);
+    }
+
+    // Pembantu agar Coroutine fade tidak bentrok/saling tumpuk
+    private void StartFade(float targetAlpha)
+    {
+        if (currentFadeCoroutine != null)
+        {
+            StopCoroutine(currentFadeCoroutine);
+        }
+        currentFadeCoroutine = StartCoroutine(FadeRoutine(targetAlpha));
+    }
+
     private IEnumerator FadeRoutine(float targetAlpha)
     {
         if (fadeCanvasGroup == null) yield break;
 
         fadeCanvasGroup.blocksRaycasts = true;
 
+        // Tunggu 1 frame agar delta time setelah loading stabil
+        yield return null;
+
         float startAlpha = fadeCanvasGroup.alpha;
-        float time = 0;
+        float time = 0f;
 
         while (time < fadeDuration)
         {
             time += Time.unscaledDeltaTime;
-            float progress = time / fadeDuration;
+            float progress = Mathf.Clamp01(time / fadeDuration);
             fadeCanvasGroup.alpha = Mathf.SmoothStep(startAlpha, targetAlpha, progress);
             yield return null;
         }
@@ -128,24 +167,5 @@ public class FadeManager : MonoBehaviour
         {
             fadeCanvasGroup.blocksRaycasts = false;
         }
-    }
-
-    public void LoadSceneWithFade(string sceneName)
-    {
-        StartCoroutine(FadeAndLoadSceneRoutine(sceneName));
-    }
-
-    private IEnumerator FadeAndLoadSceneRoutine(string sceneName)
-    {
-        // 1. Layar perlahan jadi hitam (Fade Out)
-        yield return StartCoroutine(FadeRoutine(1f));
-
-        // 2. Berikan jeda singkat opsional agar layar benar-benar menahan warna hitam sejenak
-        yield return new WaitForSecondsRealtime(0.2f);
-
-        // 3. Setelah layar benar-benar gelap gulita, baru pindah scene
-        SceneManager.LoadScene(sceneName);
-
-        // (Selanjutnya event OnSceneLoaded akan otomatis mengambil alih untuk melakukan Fade In di scene baru)
     }
 }

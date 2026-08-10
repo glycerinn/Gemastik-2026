@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CookingGameManager : MonoBehaviour
@@ -10,27 +11,85 @@ public class CookingGameManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject submitButton;
+    private CanvasGroup submitCanvasGroup;
+    private Coroutine submitFadeCoroutine;
+    private bool isSubmitVisible = false;
 
     private int successfulMeals;
     private int failedMeals;
 
+    private void Awake()
+    {
+        submitCanvasGroup = submitButton.GetComponent<CanvasGroup>();
+        if (submitCanvasGroup == null) submitCanvasGroup = submitButton.AddComponent<CanvasGroup>();
+    }
+
     private void Start()
     {
-        submitButton.SetActive(false);
+        // Hilangkan tombol saat mulai via alpha, jangan SetActive(false)
+        submitCanvasGroup.alpha = 0f;
+        submitCanvasGroup.interactable = false;
+        submitCanvasGroup.blocksRaycasts = false;
+        isSubmitVisible = false;
     }
 
     public void CheckPlateFilled()
     {
+        bool isFull = true;
         foreach (PlateSlot slot in plateManager.plateSlots)
         {
             if (slot.currentItem == null)
             {
-                submitButton.SetActive(false);
-                return;
+                isFull = false;
+                break;
             }
         }
 
-        submitButton.SetActive(true);
+        if (isFull && !isSubmitVisible)
+        {
+            isSubmitVisible = true;
+            FadeSubmitButton(1f, true);
+        }
+        else if (!isFull && isSubmitVisible)
+        {
+            isSubmitVisible = false;
+            FadeSubmitButton(0f, false);
+        }
+    }
+
+    private void FadeSubmitButton(float targetAlpha, bool interactable)
+    {
+        if (submitFadeCoroutine != null) StopCoroutine(submitFadeCoroutine);
+        submitFadeCoroutine = StartCoroutine(FadeSubmitRoutine(targetAlpha, interactable));
+    }
+
+    private IEnumerator FadeSubmitRoutine(float targetAlpha, bool interactable)
+    {
+        float startAlpha = submitCanvasGroup.alpha;
+        float time = 0;
+        float duration = 0.3f; // Kecepatan muncul tombol
+
+        if (interactable) submitCanvasGroup.blocksRaycasts = true;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float progress = time / duration;
+
+            submitCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, progress);
+
+            // Efek membesar (pop-up)
+            float scale = Mathf.Lerp(startAlpha == 0 ? 0.8f : 1f, targetAlpha == 1 ? 1f : 0.8f, progress);
+            submitButton.transform.localScale = new Vector3(scale, scale, 1f);
+
+            yield return null;
+        }
+
+        submitCanvasGroup.alpha = targetAlpha;
+        submitButton.transform.localScale = new Vector3(targetAlpha == 1 ? 1f : 0.8f, targetAlpha == 1 ? 1f : 0.8f, 1f);
+        submitCanvasGroup.interactable = interactable;
+
+        if (!interactable) submitCanvasGroup.blocksRaycasts = false;
     }
 
     public void SubmitMeal()
@@ -45,9 +104,11 @@ public class CookingGameManager : MonoBehaviour
 
         plateManager.ClearPlate();
         foodGenerator.ResetChoices();
-        submitButton.SetActive(false);
 
-        // Continue to the next student or finish the day
+        // Pudar tombol submit
+        isSubmitVisible = false;
+        FadeSubmitButton(0f, false);
+
         if (studentManager.HasMoreStudents())
         {
             studentManager.NextStudent();
@@ -61,28 +122,20 @@ public class CookingGameManager : MonoBehaviour
     private bool CheckMeal()
     {
         StudentSO student = studentManager.CurrentStudent;
-
-        NutritionTarget target =
-            NutritionTargets.GetTarget(student.nutritionProblem);
+        NutritionTarget target = NutritionTargets.GetTarget(student.nutritionProblem);
 
         bool percentagesCorrect =
             Mathf.Approximately(plateManager.carbPercent, target.carbs) &&
             Mathf.Approximately(plateManager.proteinPercent, target.protein) &&
             Mathf.Approximately(plateManager.fatPercent, target.fat);
 
-        bool favoritesCorrect =
-            plateManager.AllFoodsAreFavorites(student);
+        bool favoritesCorrect = plateManager.AllFoodsAreFavorites(student);
 
-        if (!percentagesCorrect)
-            Debug.Log("Wrong nutrition percentages.");
-
-        if (!favoritesCorrect)
-            Debug.Log("Contains food the student dislikes.");
+        if (!percentagesCorrect) Debug.Log("Wrong nutrition percentages.");
+        if (!favoritesCorrect) Debug.Log("Contains food the student dislikes.");
 
         bool success = percentagesCorrect && favoritesCorrect;
-
         Debug.Log(success ? "Meal Successful!" : "Meal Failed!");
-
         return success;
     }
 
