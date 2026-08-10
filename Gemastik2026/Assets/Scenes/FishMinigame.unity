@@ -616,13 +616,21 @@ MonoBehaviour:
   attemptText: {fileID: 39551803}
   completedPanel: {fileID: 271704536}
   stopAction: {fileID: 8948397699116533980, guid: 165c8b5a578b0c442823e995dba05e98, type: 3}
-  totalAttempts: 5
-  speed: 1.5
+  totalAttempts: 10
   biteWaitRange: {x: 0, y: 0}
   randomizeZone: 1
-  zoneSizeRange: {x: 0.18, y: 0.32}
   zoneCenterClamp: {x: 0.15, y: 0.85}
   autoStartonEnable: 1
+  baseSpeed: 1.5
+  speedIncreasePerCatch: 0.25
+  maxSpeed: 4
+  baseZoneSizeRange: {x: 0.18, y: 0.32}
+  zoneShrinkPerCatch: 0.015
+  minZoneSize: 0.08
+  markerImage: {fileID: 0}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  successColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
+  missColor: {r: 0.8, g: 0.2, b: 0.2, a: 1}
   onCatch:
     m_PersistentCalls:
       m_Calls: []
@@ -675,6 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TownGameManager
   totalMinigames: 5
   completedMinigamesDebug: 
+  collectedIngredients: []
 --- !u!4 &886951366
 Transform:
   m_ObjectHideFlags: 0
