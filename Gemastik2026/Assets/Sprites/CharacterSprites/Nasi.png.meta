@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 4e41d4820d0539c40b6de44129fc64d7
+guid: a48a8f01e2c77054ba7f355fbbd6dcbe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6005452693498850638
-    second: Sky_0_0
+      213: -171791255948515800
+    second: Nasi_0
+  - first:
+      213: -2998941445601001933
+    second: Nasi_1
+  - first:
+      213: 869075091461252597
+    second: Nasi_2
+  - first:
+      213: -5536360216086641046
+    second: Nasi_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,21 +46,21 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 400
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,10 +81,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sky_0_0
+      name: Nasi_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 8550
-        height: 4000
+        x: 433
+        y: 208
+        width: 44
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b29690f79858aca0800000000000000
-      internalID: -6005452693498850638
+      spriteID: 826abad43ccad9df0800000000000000
+      internalID: -171791255948515800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nasi_1
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 206
+        width: 51
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33e71c0f4ae9166d0800000000000000
+      internalID: -2998941445601001933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nasi_2
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 214
+        width: 106
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f520bde0339f0c00800000000000000
+      internalID: 869075091461252597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nasi_3
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 128
+        width: 1054
+        height: 1728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a660d8367b5ea23b0800000000000000
+      internalID: -5536360216086641046
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sky_0_0: -6005452693498850638
+      Nasi_0: -171791255948515800
+      Nasi_1: -2998941445601001933
+      Nasi_2: 869075091461252597
+      Nasi_3: -5536360216086641046
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
