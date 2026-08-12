@@ -724,6 +724,10 @@ MonoBehaviour:
   pergerakanX: 0.2
   pergerakanY: 0.2
   kecepatanSmooth: 5
+  kecepatanArusX: 1
+  kecepatanArusY: 0.7
+  jarakAyunanX: 0.1
+  jarakAyunanY: 0.05
 --- !u!1 &666563013
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +906,10 @@ MonoBehaviour:
   pergerakanX: 0.5
   pergerakanY: 0.2
   kecepatanSmooth: 5
+  kecepatanArusX: 1
+  kecepatanArusY: 0.7
+  jarakAyunanX: 0.1
+  jarakAyunanY: 0.05
 --- !u!1 &808070979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1017,10 @@ MonoBehaviour:
   pergerakanX: 0.3
   pergerakanY: 0.2
   kecepatanSmooth: 5
+  kecepatanArusX: 1
+  kecepatanArusY: 0.7
+  jarakAyunanX: 0.1
+  jarakAyunanY: 0.05
 --- !u!1 &886951364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,6 +1254,10 @@ MonoBehaviour:
   pergerakanX: 0.2
   pergerakanY: 0.2
   kecepatanSmooth: 5
+  kecepatanArusX: 1
+  kecepatanArusY: 0.7
+  jarakAyunanX: 0.1
+  jarakAyunanY: 0.05
 --- !u!1 &1330839356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,7 +1507,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 6354282471748313986}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 4, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1743383834, guid: 63a126b13f266844291c41fe373c8ecc, type: 3}
+  m_Sprite: {fileID: 3483859434839241108, guid: 3b0d7fea6f1fa6a44b4b1c99ee84d4d4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,9 +89,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbf9c938da89a8408e2978c0a292ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trash
-  fallSpeed: 3
-  fallSpeedMax: 500
   fallSpeedMin: 350
+  fallSpeedMax: 500
+  sizeMin: 70
+  sizeMax: 100
+  fadeInDuration: 0.25
+  fadeOutDuration: 0.3
 --- !u!61 &9005440838832022234
 BoxCollider2D:
   m_ObjectHideFlags: 0
