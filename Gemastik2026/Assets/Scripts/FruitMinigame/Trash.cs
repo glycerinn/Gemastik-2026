@@ -5,18 +5,31 @@ using UnityEngine.EventSystems;
 
 public class Trash : MonoBehaviour, IPointerClickHandler
 {
+    [Header("Kecepatan Jatuh (Y)")]
     public float fallSpeedMin = 300f;
     public float fallSpeedMax = 500f;
+
+    [Header("Gerakan Dinamis (Meliuk & Berputar)")]
+    public float swayAmountMin = 40f;   // Seberapa lebar ayunan minimal
+    public float swayAmountMax = 90f;   // Seberapa lebar ayunan maksimal
+    public float swaySpeedMin = 2f;     // Seberapa cepat mengayun minimal
+    public float swaySpeedMax = 4.5f;   // Seberapa cepat mengayun maksimal
+    public float rotationSpeedMax = 60f;// Batas kecepatan berputar (derajat/detik)
 
     [Header("Ukuran Buah")]
     public float sizeMin = 70f;
     public float sizeMax = 100f;
 
     [Header("Transisi Fade")]
-    public float fadeInDuration = 0.25f;  // Durasi muncul mulus saat spawn
-    public float fadeOutDuration = 0.3f;   // Durasi pudar saat lolos/miss
+    public float fadeInDuration = 0.25f;
+    public float fadeOutDuration = 0.3f;
 
     private float currentFallSpeed;
+    private float currentSwayAmount;
+    private float currentSwaySpeed;
+    private float currentRotationSpeed;
+    private float randomTimeOffset;
+
     private RectTransform rect;
     private Image image;
     private bool isCaught = false;
@@ -27,16 +40,26 @@ public class Trash : MonoBehaviour, IPointerClickHandler
         rect = GetComponent<RectTransform>();
         image = GetComponent<Image>();
 
-        // Kecepatan jatuh dengan multiplier dari GameManager
+        // 1. Kecepatan Jatuh Dasar
         float baseSpeed = Random.Range(fallSpeedMin, fallSpeedMax);
         float multiplier = GameManager.instance != null ? GameManager.instance.GetSpeedMultiplier() : 1f;
         currentFallSpeed = baseSpeed * multiplier;
 
-        // Ukuran buah
+        // 2. Acak Parameter Gerakan Dinamis untuk Tiap Buah
+        currentSwayAmount = Random.Range(swayAmountMin, swayAmountMax);
+        currentSwaySpeed = Random.Range(swaySpeedMin, swaySpeedMax);
+
+        // Acak putaran (bisa ke kanan/positif atau ke kiri/negatif)
+        currentRotationSpeed = Random.Range(-rotationSpeedMax, rotationSpeedMax);
+
+        // Offset waktu agar buah yang muncul bersamaan tidak mengayun ke arah yang sama persis
+        randomTimeOffset = Random.Range(0f, 100f);
+
+        // 3. Atur Ukuran
         float size = Random.Range(sizeMin, sizeMax);
         rect.sizeDelta = new Vector2(size, size);
 
-        // Jalankan Fade In saat pertama kali muncul (spawn)
+        // 4. Fade In saat Muncul
         if (image != null)
         {
             StartCoroutine(FadeInRoutine());
@@ -47,10 +70,18 @@ public class Trash : MonoBehaviour, IPointerClickHandler
     {
         if (isCaught) return;
 
-        // Buah bergerak jatuh ke bawah
-        rect.anchoredPosition += Vector2.down * currentFallSpeed * Time.deltaTime;
+        // --- GERAKAN DINAMIS ---
+        // Menghitung ayunan ke kiri/kanan menggunakan gelombang Sinus
+        float swayX = Mathf.Sin(Time.time * currentSwaySpeed + randomTimeOffset) * currentSwayAmount;
 
-        // Cek jika buah lolos ke bawah layar (Missed)
+        // Aplikasikan pergerakan (Turun ke bawah + Mengayun ke samping)
+        rect.anchoredPosition += new Vector2(swayX, -currentFallSpeed) * Time.deltaTime;
+
+        // Aplikasikan rotasi agar buah berputar organik
+        rect.Rotate(0f, 0f, currentRotationSpeed * Time.deltaTime);
+        // -----------------------
+
+        // Cek jika lolos ke bawah layar
         if (!isMissed && rect.anchoredPosition.y < -1080 / 2f - 50f)
         {
             isMissed = true;
@@ -58,7 +89,6 @@ public class Trash : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Transisi 1: Fade In saat Buah Baru Spawn
     IEnumerator FadeInRoutine()
     {
         Color c = image.color;
@@ -78,7 +108,6 @@ public class Trash : MonoBehaviour, IPointerClickHandler
         image.color = c;
     }
 
-    // Transisi 2: Fade Out saat Buah Lolos di Bawah (Miss)
     IEnumerator MissFadeOutRoutine()
     {
         if (GameManager.instance != null)
@@ -104,7 +133,6 @@ public class Trash : MonoBehaviour, IPointerClickHandler
         Destroy(gameObject);
     }
 
-    // Fungsi Publik untuk Menghilangkan Buah dengan Mulus (dipanggil saat spawner bersihkan layar)
     public void FadeOutAndDestroy(float duration = 0.25f)
     {
         if (gameObject.activeInHierarchy)
@@ -119,7 +147,7 @@ public class Trash : MonoBehaviour, IPointerClickHandler
 
     IEnumerator QuickFadeOutRoutine(float duration)
     {
-        isMissed = true; // Kunci agar tidak bisa diklik lagi
+        isMissed = true;
         Color initialColor = image != null ? image.color : Color.white;
         float elapsed = 0f;
 
@@ -159,7 +187,6 @@ public class Trash : MonoBehaviour, IPointerClickHandler
         float duration = 0.1f;
         float elapsed = 0f;
 
-        // Pop Up saat ditangkap
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
@@ -167,7 +194,6 @@ public class Trash : MonoBehaviour, IPointerClickHandler
             yield return null;
         }
 
-        // Shrink & Fade Out
         elapsed = 0f;
         float shrinkDuration = 0.08f;
         Color initialColor = image != null ? image.color : Color.white;
