@@ -1,151 +1,223 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Rice : MonoBehaviour
+public class Rice : MonoBehaviour, IPointerClickHandler
 {
     public enum RiceStage
     {
         Seed, Young, Nearing, Ready
     }
 
-    public RiceStage stage;
-    public Image image;
+    public RiceStage stage = RiceStage.Ready;
 
-    [Header("Warna Tahapan")]
-    public Color seedColor = new Color(0.45f, 0.25f, 0.1f);
-    public Color youngColor = Color.green;
-    public Color nearingColor = Color.yellow;
-    public Color readyColor = new Color(1f, 0.8f, 0f); // Emas
+    [Header("UI / Component References")]
+    public Image image;
+    public SpriteRenderer spriteRenderer;
+
+    [Header("Visual Assets (Sprite Tiap Tahapan)")]
+    public Sprite seedSprite;
+    public Sprite youngSprite;
+    public Sprite nearingSprite;
+    public Sprite readySprite;
+
+    [Header("Juicy Animation Settings")]
+    public float growthAnimDuration = 0.25f;
+    public float punchScaleMultiplier = 1.2f;
 
     private Vector3 originalScale;
-    private bool isAnimating = false;
+    [HideInInspector] public bool isAnimating = false;
 
     private void Awake()
     {
         originalScale = transform.localScale;
         if (image == null) image = GetComponent<Image>();
+        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Mengunci rasio gambar agar tidak gepeng
+        if (image != null)
+        {
+            image.preserveAspect = true;
+        }
     }
 
     private void Start()
     {
-        UpdateVisual();
+        UpdateVisualInstant();
     }
 
-    public void SetStage(RiceStage newStage)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        stage = newStage;
-        UpdateVisual();
+        TryHarvest();
+    }
+
+    private void OnMouseDown()
+    {
+        TryHarvest();
+    }
+
+    private void TryHarvest()
+    {
+        if (RiceGameManager.Instance != null)
+        {
+            RiceGameManager.Instance.OnRiceClicked(this);
+        }
+    }
+
+    public void SetStage(RiceStage newStage, bool animate = false)
+    {
+        if (animate && gameObject.activeInHierarchy)
+        {
+            StartCoroutine(AnimateGrowthRoutine(newStage));
+        }
+        else
+        {
+            stage = newStage;
+            UpdateVisualInstant();
+        }
     }
 
     public void Grow()
     {
-        if (stage != RiceStage.Ready)
+        if (stage != RiceStage.Ready && !isAnimating)
         {
-            stage++;
-            UpdateVisual();
+            RiceStage nextStage = stage + 1;
+            SetStage(nextStage, true);
         }
     }
 
-    public void UpdateVisual()
+    public void UpdateVisualInstant()
     {
-        if (image == null) return;
+        Sprite targetSprite = GetSpriteForStage(stage);
 
-        // Pastikan warna sesuai stage dan transparansi (Alpha) kembali penuh (1.0)
-        Color targetColor = GetTargetColor();
-        targetColor.a = 1f;
-        image.color = targetColor;
+        if (image != null) image.sprite = targetSprite;
+        if (spriteRenderer != null) spriteRenderer.sprite = targetSprite;
+
+        SetAlpha(1f);
+        transform.localScale = originalScale;
     }
 
-    public Color GetTargetColor()
-    {
-        switch (stage)
-        {
-            case RiceStage.Seed: return seedColor;
-            case RiceStage.Young: return youngColor;
-            case RiceStage.Nearing: return nearingColor;
-            case RiceStage.Ready: return readyColor;
-            default: return Color.white;
-        }
-    }
-
-    public void PlayJuicyHarvest(System.Action onCompleteCallback)
-    {
-        if (!gameObject.activeInHierarchy)
-        {
-            onCompleteCallback?.Invoke();
-            return;
-        }
-
-        if (isAnimating)
-        {
-            StopAllCoroutines();
-        }
-
-        StartCoroutine(HarvestAnimationRoutine(onCompleteCallback));
-    }
-
-    private IEnumerator HarvestAnimationRoutine(System.Action onCompleteCallback)
+    private IEnumerator AnimateGrowthRoutine(RiceStage newStage)
     {
         isAnimating = true;
-        float duration = 0.2f;
+        stage = newStage;
+
+        float halfDuration = growthAnimDuration * 0.5f;
         float elapsed = 0f;
 
-        Vector3 punchScale = originalScale * 1.3f;
-
-        // 1. Animasi Membesar lalu Mengecil
-        while (elapsed < duration)
+        Vector3 shrinkScale = originalScale * 0.7f;
+        while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
-            float percent = elapsed / duration;
-
-            if (percent < 0.5f)
-            {
-                transform.localScale = Vector3.Lerp(originalScale, punchScale, percent * 2f);
-            }
-            else
-            {
-                transform.localScale = Vector3.Lerp(punchScale, Vector3.zero, (percent - 0.5f) * 2f);
-            }
-
-            if (image != null)
-            {
-                Color c = readyColor;
-                c.a = Mathf.Lerp(1f, 0f, percent);
-                image.color = c;
-            }
-
+            float t = elapsed / halfDuration;
+            transform.localScale = Vector3.Lerp(originalScale, shrinkScale, t);
+            SetAlpha(Mathf.Lerp(1f, 0.3f, t));
             yield return null;
         }
 
-        transform.localScale = Vector3.zero;
-
-        // Panggil callback logika panen (tambah skor & grow padi lain)
-        onCompleteCallback?.Invoke();
-
-        // 2. Ubah ke Benih (Seed) dan Animasi Membesar Kembali
-        stage = RiceStage.Seed;
+        Sprite targetSprite = GetSpriteForStage(stage);
+        if (image != null) image.sprite = targetSprite;
+        if (spriteRenderer != null) spriteRenderer.sprite = targetSprite;
 
         elapsed = 0f;
-        float growBackDuration = 0.15f;
+        Vector3 punchScale = originalScale * punchScaleMultiplier;
 
-        // Reset warna ke benih dengan Alpha = 1 (Tampak jelas)
-        if (image != null)
-        {
-            Color sColor = seedColor;
-            sColor.a = 1f;
-            image.color = sColor;
-        }
-
-        while (elapsed < growBackDuration)
+        while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
-            transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, elapsed / growBackDuration);
+            float t = elapsed / halfDuration;
+            transform.localScale = Vector3.Lerp(shrinkScale, punchScale, t);
+            SetAlpha(Mathf.Lerp(0.3f, 1f, t));
+            yield return null;
+        }
+
+        elapsed = 0f;
+        float bounceDuration = 0.1f;
+        while (elapsed < bounceDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / bounceDuration;
+            transform.localScale = Vector3.Lerp(punchScale, originalScale, t);
             yield return null;
         }
 
         transform.localScale = originalScale;
+        SetAlpha(1f);
         isAnimating = false;
-        UpdateVisual();
+    }
+
+    public IEnumerator HarvestRoutine(System.Action onHarvestComplete)
+    {
+        isAnimating = true;
+
+        float duration = 0.18f;
+        float elapsed = 0f;
+        Vector3 punchScale = originalScale * 1.3f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            if (t < 0.5f)
+                transform.localScale = Vector3.Lerp(originalScale, punchScale, t * 2f);
+            else
+                transform.localScale = Vector3.Lerp(punchScale, Vector3.zero, (t - 0.5f) * 2f);
+
+            SetAlpha(Mathf.Lerp(1f, 0f, t));
+            yield return null;
+        }
+
+        transform.localScale = Vector3.zero;
+        onHarvestComplete?.Invoke();
+
+        stage = RiceStage.Seed;
+        Sprite seedSp = GetSpriteForStage(RiceStage.Seed);
+        if (image != null) image.sprite = seedSp;
+        if (spriteRenderer != null) spriteRenderer.sprite = seedSp;
+
+        elapsed = 0f;
+        float respawnDuration = 0.15f;
+        while (elapsed < respawnDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / respawnDuration;
+            transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, t);
+            SetAlpha(Mathf.Lerp(0f, 1f, t));
+            yield return null;
+        }
+
+        transform.localScale = originalScale;
+        SetAlpha(1f);
+        isAnimating = false;
+    }
+
+    private Sprite GetSpriteForStage(RiceStage targetStage)
+    {
+        switch (targetStage)
+        {
+            case RiceStage.Seed: return seedSprite;
+            case RiceStage.Young: return youngSprite;
+            case RiceStage.Nearing: return nearingSprite;
+            case RiceStage.Ready: return readySprite;
+            default: return readySprite;
+        }
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        if (image != null)
+        {
+            Color c = image.color;
+            c.a = alpha;
+            image.color = c;
+        }
+        if (spriteRenderer != null)
+        {
+            Color c = spriteRenderer.color;
+            c.a = alpha;
+            spriteRenderer.color = c;
+        }
     }
 }

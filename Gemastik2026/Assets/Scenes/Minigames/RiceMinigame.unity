@@ -216,8 +216,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 1495065441
-  m_SortingLayer: -2
+  m_SortingLayerID: 949194267
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: a9253f89696514d479cf55c3debc3fcf, type: 3}
@@ -330,14 +330,14 @@ RectTransform:
   m_GameObject: {fileID: 265914065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 564084378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -335, y: -78}
+  m_AnchoredPosition: {x: -454, y: -92}
   m_SizeDelta: {x: 178.7625, y: 178.7625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265914067
@@ -354,10 +354,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Rice
   stage: 0
   image: {fileID: 265914069}
-  seedColor: {r: 0.45, g: 0.25, b: 0.1, a: 1}
-  youngColor: {r: 0, g: 1, b: 0, a: 1}
-  nearingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  readyColor: {r: 1, g: 0.6144985, b: 0, a: 1}
+  spriteRenderer: {fileID: 0}
+  seedSprite: {fileID: -3491839630117010820, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  youngSprite: {fileID: 3849808467749604940, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  nearingSprite: {fileID: 2080791224664143242, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  readySprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  growthAnimDuration: 0.25
+  punchScaleMultiplier: 1.25
+  isAnimating: 0
 --- !u!114 &265914068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,15 +438,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &265914070
 CanvasRenderer:
@@ -555,11 +559,11 @@ MonoBehaviour:
   - {fileID: 1622829341}
   - {fileID: 582211337}
   - {fileID: 2144187861}
+  - {fileID: 1976122011}
   scoreText: {fileID: 1366461062}
   winPanel: {fileID: 261472401}
   targetScore: 50
   harvestParticlePrefab: {fileID: 7525507439652850336, guid: 4ecf4c12ee3a03d40886f41eba77ba57, type: 3}
-  particleColor: {r: 1, g: 0.9, b: 0.2, a: 1}
 --- !u!1 &489216468
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,14 +594,14 @@ RectTransform:
   m_GameObject: {fileID: 489216468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 564084378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -670, y: -78}
+  m_AnchoredPosition: {x: -789, y: -92}
   m_SizeDelta: {x: 178.7625, y: 178.7625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &489216470
@@ -612,12 +616,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d3907cdefffeb46995a643d1db8e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rice
-  stage: 0
+  stage: 3
   image: {fileID: 489216472}
-  seedColor: {r: 0.45, g: 0.25, b: 0.1, a: 1}
-  youngColor: {r: 0, g: 1, b: 0, a: 1}
-  nearingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  readyColor: {r: 1, g: 0.6144985, b: 0, a: 1}
+  spriteRenderer: {fileID: 0}
+  seedSprite: {fileID: -3491839630117010820, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  youngSprite: {fileID: 3849808467749604940, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  nearingSprite: {fileID: 2080791224664143242, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  readySprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  growthAnimDuration: 0.25
+  punchScaleMultiplier: 1.25
+  isAnimating: 0
 --- !u!114 &489216471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,15 +702,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &489216473
 CanvasRenderer:
@@ -828,8 +836,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 1495065441
-  m_SortingLayer: -2
+  m_SortingLayerID: 949194267
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: e01480bf3bb16e247972da2dbe5f7bd8, type: 3}
@@ -875,6 +883,7 @@ RectTransform:
   - {fileID: 1622829340}
   - {fileID: 582211336}
   - {fileID: 2144187860}
+  - {fileID: 1976122009}
   m_Father: {fileID: 1618083766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -912,14 +921,14 @@ RectTransform:
   m_GameObject: {fileID: 582211335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 564084378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 333, y: -78}
+  m_AnchoredPosition: {x: 214, y: -92}
   m_SizeDelta: {x: 178.7625, y: 178.7625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &582211337
@@ -934,12 +943,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d3907cdefffeb46995a643d1db8e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rice
-  stage: 0
+  stage: 1
   image: {fileID: 582211339}
-  seedColor: {r: 0.45, g: 0.25, b: 0.1, a: 1}
-  youngColor: {r: 0, g: 1, b: 0, a: 1}
-  nearingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  readyColor: {r: 1, g: 0.6144985, b: 0, a: 1}
+  spriteRenderer: {fileID: 0}
+  seedSprite: {fileID: -3491839630117010820, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  youngSprite: {fileID: 3849808467749604940, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  nearingSprite: {fileID: 2080791224664143242, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  readySprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  growthAnimDuration: 0.25
+  punchScaleMultiplier: 1.25
+  isAnimating: 0
 --- !u!114 &582211338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,15 +1029,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &582211340
 CanvasRenderer:
@@ -1098,7 +1111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e88da074f1851c4198334b5e3614651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseParallax
-  pergerakanX: 0.5
+  pergerakanX: 0.2
   pergerakanY: 0.2
   kecepatanSmooth: 5
   kecepatanArusX: 1
@@ -1150,8 +1163,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 949194267
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 6657d4bff8464284688e618da482a707, type: 3}
@@ -1619,14 +1632,14 @@ RectTransform:
   m_GameObject: {fileID: 1622829339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 564084378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -78}
+  m_AnchoredPosition: {x: -119, y: -92}
   m_SizeDelta: {x: 178.7625, y: 178.7625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1622829341
@@ -1641,12 +1654,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d3907cdefffeb46995a643d1db8e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rice
-  stage: 0
+  stage: 2
   image: {fileID: 1622829343}
-  seedColor: {r: 0.45, g: 0.25, b: 0.1, a: 1}
-  youngColor: {r: 0, g: 1, b: 0, a: 1}
-  nearingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  readyColor: {r: 1, g: 0.6144985, b: 0, a: 1}
+  spriteRenderer: {fileID: 0}
+  seedSprite: {fileID: -3491839630117010820, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  youngSprite: {fileID: 3849808467749604940, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  nearingSprite: {fileID: 2080791224664143242, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  readySprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  growthAnimDuration: 0.25
+  punchScaleMultiplier: 1.25
+  isAnimating: 0
 --- !u!114 &1622829342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1723,15 +1740,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1622829344
 CanvasRenderer:
@@ -1839,6 +1856,181 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1976122008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1976122009}
+  - component: {fileID: 1976122014}
+  - component: {fileID: 1976122013}
+  - component: {fileID: 1976122012}
+  - component: {fileID: 1976122011}
+  - component: {fileID: 1976122010}
+  m_Layer: 5
+  m_Name: Rice (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1976122009
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976122008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 564084378}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 820, y: -92}
+  m_SizeDelta: {x: 178.7625, y: 178.7625}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1976122010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976122008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e88da074f1851c4198334b5e3614651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseParallax
+  pergerakanX: 0.5
+  pergerakanY: 0.2
+  kecepatanSmooth: 5
+  kecepatanArusX: 1
+  kecepatanArusY: 0.7
+  jarakAyunanX: 0.1
+  jarakAyunanY: 0.05
+--- !u!114 &1976122011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976122008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d3907cdefffeb46995a643d1db8e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rice
+  stage: 3
+  image: {fileID: 1976122013}
+  spriteRenderer: {fileID: 0}
+  seedSprite: {fileID: -3491839630117010820, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  youngSprite: {fileID: 3849808467749604940, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  nearingSprite: {fileID: 2080791224664143242, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  readySprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  growthAnimDuration: 0.25
+  punchScaleMultiplier: 1.25
+  isAnimating: 0
+--- !u!114 &1976122012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976122008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1976122013}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 316565762}
+        m_TargetAssemblyTypeName: RiceGameManager, Assembly-CSharp
+        m_MethodName: OnRiceClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1976122011}
+          m_ObjectArgumentAssemblyTypeName: Rice, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1976122013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976122008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 1
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1976122014
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976122008}
+  m_CullTransparentMesh: 1
 --- !u!1 &2144187859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,14 +2061,14 @@ RectTransform:
   m_GameObject: {fileID: 2144187859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 564084378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 670, y: -78}
+  m_AnchoredPosition: {x: 551, y: -92}
   m_SizeDelta: {x: 178.7625, y: 178.7625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144187861
@@ -1891,12 +2083,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d3907cdefffeb46995a643d1db8e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rice
-  stage: 0
+  stage: 3
   image: {fileID: 2144187863}
-  seedColor: {r: 0.45, g: 0.25, b: 0.1, a: 1}
-  youngColor: {r: 0, g: 1, b: 0, a: 1}
-  nearingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  readyColor: {r: 1, g: 0.6144985, b: 0, a: 1}
+  spriteRenderer: {fileID: 0}
+  seedSprite: {fileID: -3491839630117010820, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  youngSprite: {fileID: 3849808467749604940, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  nearingSprite: {fileID: 2080791224664143242, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  readySprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
+  growthAnimDuration: 0.25
+  punchScaleMultiplier: 1.25
+  isAnimating: 0
 --- !u!114 &2144187862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,15 +2169,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5733057829911488661, guid: 72462458a786b674d9e9feb6119f2ac3, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &2144187864
 CanvasRenderer:
