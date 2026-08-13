@@ -4,8 +4,6 @@ using Yarn.Unity;
 
 public class DialoguePortrait : MonoBehaviour
 {
-    public static DialoguePortrait Instance;
-
     [Header("UI")]
     public Image characterPortrait;
     public GameObject portraitBackground;
@@ -15,23 +13,45 @@ public class DialoguePortrait : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         portraitBackground.SetActive(false);
+        characterPortrait.enabled = false;
+
+        dialogueRunner.AddCommandHandler("show_character", ShowDialogueCharacter);
     }
 
     private void Start()
     {
-        characterPortrait.enabled = false;
-
         dialogueRunner.onDialogueComplete.AddListener(HideCharacter);
-        
+    }
+
+    public void ShowDialogueCharacter()
+    {
+        if (TalkNPC.CurrentNPC == null)
+        {
+            Debug.LogWarning("No CurrentNPC found!");
+            return;
+        }
+
+        Sprite sprite = TalkNPC.CurrentNPC.dialogueSprite;
+
+        Debug.Log(
+            "Showing portrait for: " +
+            TalkNPC.CurrentNPC.name +
+            " | Sprite: " +
+            sprite
+        );
+
+        ShowCharacter(sprite);
     }
 
     public void ShowCharacter(Sprite sprite)
     {
         if (sprite == null)
         {
+            Debug.LogWarning("Portrait sprite is NULL!");
+
             characterPortrait.enabled = false;
+            portraitBackground.SetActive(false);
             return;
         }
 

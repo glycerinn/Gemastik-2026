@@ -1,0 +1,9 @@
+﻿title: Ikan
+---
+<<show_character>>
+Anto: Halo, kamu sedang cari bahan-bahan ya?
+Anto: Pohon pisangku sedang berbuah.
+Anto: Jika kamu mau, kamu bisa bantu saya panen.
+-> Sip, saya bantu.
+-> Ntar lagi ya.
+===

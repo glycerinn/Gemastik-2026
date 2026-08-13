@@ -6,6 +6,7 @@ public class TalkNPC : MonoBehaviour
     public static TalkNPC CurrentNPC;
 
     [Header("Dialogue")]
+    public DialoguePortrait dialoguePortrait;
     public DialogueRunner dialogueRunner;
     public string dialogueNode;
     public Sprite dialogueSprite;
@@ -18,17 +19,29 @@ public class TalkNPC : MonoBehaviour
     public Color highlightColor = Color.yellow;
 
     private SpriteRenderer spriteRenderer;
+    public float fadeSpeed = 5f;
+    public GameObject InteractOption;
+
+    private CanvasGroup canvasGroup;
 
     public void Awake()
-    {
+    {   
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         if (spriteRenderer != null)
             spriteRenderer.color = normalColor;
 
-        Debug.Log("Registered StartGame");
+        canvasGroup = InteractOption.GetComponent<CanvasGroup>();
 
-        dialogueRunner.AddCommandHandler("show_character",ShowDialogueCharacter);
-    } 
+        if (canvasGroup == null)
+        {
+            canvasGroup = InteractOption.AddComponent<CanvasGroup>();
+        }
+
+        canvasGroup.alpha = 0f;
+
+        Debug.Log("Registered StartGame");
+    }
 
     private void Update()
     {
@@ -48,6 +61,14 @@ public class TalkNPC : MonoBehaviour
         {
             Talk();
         }
+
+        float targetAlpha = distance <= interactDistance ? 1f : 0f;
+
+        canvasGroup.alpha = Mathf.MoveTowards(
+            canvasGroup.alpha,
+            targetAlpha,
+            fadeSpeed * Time.deltaTime
+        );
     }
 
     public void Talk()
@@ -55,10 +76,5 @@ public class TalkNPC : MonoBehaviour
         CurrentNPC = this;
         Debug.Log("Called");
         dialogueRunner.StartDialogue(dialogueNode);
-    }
-
-    public void ShowDialogueCharacter()
-    {
-        DialoguePortrait.Instance.ShowCharacter(dialogueSprite);
     }
 }
