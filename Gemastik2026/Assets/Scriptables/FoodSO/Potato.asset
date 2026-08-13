@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Potato
   icon: {fileID: -5661783315169486296, guid: aef816c80f7454347bb7f3bbdc70d727, type: 3}
+  platedIcon: {fileID: 5330948533494848290, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 0

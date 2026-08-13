@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 235990342}
   - component: {fileID: 235990340}
   - component: {fileID: 235990343}
+  - component: {fileID: 235990344}
   m_Layer: 0
   m_Name: Queue
   m_TagString: Untagged
@@ -237,6 +238,25 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
+--- !u!114 &235990344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235990339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e88da074f1851c4198334b5e3614651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseParallax
+  pergerakanX: 0.2
+  pergerakanY: 0.2
+  kecepatanSmooth: 5
+  kecepatanArusX: 1
+  kecepatanArusY: 0.7
+  jarakAyunanX: 0.1
+  jarakAyunanY: 0.05
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +352,7 @@ GameObject:
   - component: {fileID: 1048137125}
   - component: {fileID: 1048137127}
   - component: {fileID: 1048137126}
+  - component: {fileID: 1048137128}
   m_Layer: 5
   m_Name: bg
   m_TagString: Untagged
@@ -347,7 +368,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048137124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -355,8 +376,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2051.63, y: 1154.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1048137126
 MonoBehaviour:
@@ -396,6 +417,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048137124}
   m_CullTransparentMesh: 1
+--- !u!114 &1048137128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048137124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e88da074f1851c4198334b5e3614651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseParallax
+  pergerakanX: 0.5
+  pergerakanY: 0.2
+  kecepatanSmooth: 5
+  kecepatanArusX: 1
+  kecepatanArusY: 0.7
+  jarakAyunanX: 0.1
+  jarakAyunanY: 0.05
 --- !u!1 &1072031842
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,8 +555,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 628f98bec43a8ab4997a53ab4dda5644, type: 2}
+  m_sharedMaterial: {fileID: -7235389430326575976, guid: 628f98bec43a8ab4997a53ab4dda5644, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

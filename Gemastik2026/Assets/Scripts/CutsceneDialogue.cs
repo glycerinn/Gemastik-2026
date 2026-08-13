@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CutsceneDialogue : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class CutsceneDialogue : MonoBehaviour
 
     public float typingSpeed = 0.05f;
 
+    [Header("Scene")]
+    public string gameSceneName = "SideScroller";
+
     private int currentLine;
     private Coroutine typingCoroutine;
 
@@ -20,12 +24,10 @@ public class CutsceneDialogue : MonoBehaviour
 
     private TextMeshProUGUI currentTextObject;
 
-
     private void Start()
     {
         ShowDialogue();
     }
-
 
     private void Update()
     {
@@ -35,34 +37,35 @@ public class CutsceneDialogue : MonoBehaviour
         }
     }
 
-
     private void HandleClick()
     {
-        // Finish current text
+        // Finish current text first
         if (isTyping)
         {
             StopCoroutine(typingCoroutine);
 
             currentTextObject.text = currentText;
             isTyping = false;
+
+            return;
         }
 
-        // Create next line
+        // Move to next dialogue
+        currentLine++;
+
+        // More dialogue remaining
+        if (currentLine < dialogues.Length)
+        {
+            ShowDialogue();
+        }
+        // All dialogue finished
         else
         {
-            currentLine++;
+            Debug.Log("Cutscene finished. Loading game scene...");
 
-            if (currentLine < dialogues.Length)
-            {
-                ShowDialogue();
-            }
-            else
-            {
-                Debug.Log("Cutscene finished");
-            }
+            FadeManager.Instance.LoadSceneWithFade(gameSceneName);
         }
     }
-
 
     private void ShowDialogue()
     {
@@ -73,13 +76,13 @@ public class CutsceneDialogue : MonoBehaviour
             dialogueContainer
         );
 
-        currentTextObject = newLine.GetComponent<TextMeshProUGUI>();
+        currentTextObject =
+            newLine.GetComponent<TextMeshProUGUI>();
 
         typingCoroutine = StartCoroutine(
             TypeDialogue(currentText)
         );
     }
-
 
     private IEnumerator TypeDialogue(string text)
     {
@@ -87,9 +90,10 @@ public class CutsceneDialogue : MonoBehaviour
 
         currentTextObject.text = "";
 
-        foreach(char letter in text)
+        foreach (char letter in text)
         {
             currentTextObject.text += letter;
+
             yield return new WaitForSeconds(typingSpeed);
         }
 

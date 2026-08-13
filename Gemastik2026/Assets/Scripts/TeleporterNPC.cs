@@ -54,14 +54,10 @@ public class TeleporterNPC : MonoBehaviour
         dialogueRunner.StartDialogue(dialogueNode);
     }
 
-    // ---------------------------------------------------------
-    // YARN COMMAND PINDAH SCENE DENGAN FADE
-    // Contoh panggil di Yarn script: <<load_scene MountainScene>>
-    // ---------------------------------------------------------
+  
     [YarnCommand("load_scene")]
     public static void LoadSceneCommand(string sceneName)
     {
-        // Bersihkan spasi atau tanda kutip jika terikut
         sceneName = sceneName.Trim().Trim('"');
 
         if (FadeManager.Instance != null)

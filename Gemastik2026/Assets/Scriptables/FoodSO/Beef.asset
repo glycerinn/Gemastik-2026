@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Beef
   icon: {fileID: -965513180393346931, guid: f920eda9ae0175b409d7752641ea62e3, type: 3}
+  platedIcon: {fileID: -3235303558137069369, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 1

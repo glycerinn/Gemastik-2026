@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool faceRight = true;
     private float moveDirection;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         moveDirection = Input.GetAxis("Horizontal");
-
+        animator.SetBool("IsWalking", Mathf.Abs(moveDirection) > 0.01f);
         if(moveDirection > 0 && !faceRight)
         {
             flipCharacter();

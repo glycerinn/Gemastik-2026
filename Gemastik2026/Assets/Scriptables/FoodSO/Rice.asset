@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Rice
   icon: {fileID: -3491839630117010820, guid: a095e5106cbd6a6458c5ffe0907faf2c, type: 3}
+  platedIcon: {fileID: -8578113610346986867, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Student 2
   m_EditorClassIdentifier: Assembly-CSharp::StudentSO
   studentName: Moka
-  portrait: {fileID: -736580025150836575, guid: 4c90c0c024646fa42abc67c2e788c615, type: 3}
+  portrait: {fileID: -4184692487329357866, guid: 472898fd2af7bb243a4dcba24fa18de0, type: 3}
   nutritionProblem: 1
   favoriteCarbs:
   - {fileID: 11400000, guid: 8d8ffd16c4a595c4f9c29b0f27ebae68, type: 2}
