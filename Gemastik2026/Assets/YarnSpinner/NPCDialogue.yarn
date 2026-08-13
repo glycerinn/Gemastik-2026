@@ -1,8 +1,8 @@
 ﻿title: NPC1
 ---
-NPC1: I cut some beef today! Would you like some?
--> Sure! 
-    NPC1: Okay then!
+Tukang Daging: Saya barusan memotong daging sapi, kamu mau tidak?
+-> Mau. 
+    Tukang Daging: Baiklah!
     <<give_reward>>
--> No thanks
+-> Tidak mau deh.
 ===
