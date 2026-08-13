@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Fish
   icon: {fileID: -4465394044095388255, guid: f20b656f90e2c3a449e2151c447a98bb, type: 3}
+  platedIcon: {fileID: -8122416793217966980, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 1

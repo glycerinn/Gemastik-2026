@@ -31,12 +31,12 @@ public class MainMenuEvents : MonoBehaviour
         // Panggil FadeManager untuk melakukan transisi fade hitam sebelum masuk ke game
         if (FadeManager.Instance != null)
         {
-            FadeManager.Instance.LoadSceneWithFade("SideScroller");
+            FadeManager.Instance.LoadSceneWithFade("Cutscene");
         }
         else
         {
             // Fallback jika FadeManager belum terpasang di Main Menu
-            SceneManager.LoadScene("SideScroller");
+            SceneManager.LoadScene("Cutscene");
         }
     }
 

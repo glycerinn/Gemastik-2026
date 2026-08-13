@@ -22,23 +22,18 @@ public class MouseParallax : MonoBehaviour
 
     void Update()
     {
-        // 1. Kalkulasi posisi dari dorongan Mouse
         float mouseX = (Input.mousePosition.x / Screen.width) - 0.5f;
         float mouseY = (Input.mousePosition.y / Screen.height) - 0.5f;
 
-        // 2. Kalkulasi posisi dari arus air (Gerakan mengambang otomatis)
-        // Kita menggunakan Sin untuk X dan Cos untuk Y agar pergerakannya memutar halus seperti angka 8, bukan diagonal kaku
         float ayunanOtomatisX = Mathf.Sin(Time.time * kecepatanArusX) * jarakAyunanX;
         float ayunanOtomatisY = Mathf.Cos(Time.time * kecepatanArusY) * jarakAyunanY;
 
-        // 3. Gabungkan dorongan mouse dengan ayunan otomatis
         Vector3 targetPosisi = new Vector3(
             (mouseX * -pergerakanX) + ayunanOtomatisX,
             (mouseY * -pergerakanY) + ayunanOtomatisY,
             0
         );
 
-        // 4. Pindahkan posisi dengan mulus (Lerp)
         transform.position = Vector3.Lerp(transform.position, posisiAwal + targetPosisi, Time.deltaTime * kecepatanSmooth);
     }
 }

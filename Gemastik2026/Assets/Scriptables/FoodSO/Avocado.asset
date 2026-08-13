@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Avocado
   icon: {fileID: 8028362493962905751, guid: d511ee98f7f2d9b4da19e746f7bf0517, type: 3}
+  platedIcon: {fileID: 5405142183806909594, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 2

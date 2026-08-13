@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Banana
   icon: {fileID: 7381965769198725172, guid: 78f44ba9d683d47478df9fdf293da820, type: 3}
+  platedIcon: {fileID: 7272222454790168850, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 0

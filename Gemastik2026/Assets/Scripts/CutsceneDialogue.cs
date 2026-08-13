@@ -63,7 +63,7 @@ public class CutsceneDialogue : MonoBehaviour
         {
             Debug.Log("Cutscene finished. Loading game scene...");
 
-            SceneManager.LoadScene(gameSceneName);
+            FadeManager.Instance.LoadSceneWithFade(gameSceneName);
         }
     }
 

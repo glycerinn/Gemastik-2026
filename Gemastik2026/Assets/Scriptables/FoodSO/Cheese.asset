@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Cheese
   icon: {fileID: 6582011127417039112, guid: 7dd4d63d4620bda43b11fe35d36808a4, type: 3}
+  platedIcon: {fileID: -4964799107604355241, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 2

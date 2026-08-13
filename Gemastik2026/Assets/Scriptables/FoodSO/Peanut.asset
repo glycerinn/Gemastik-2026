@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Peanut
   icon: {fileID: 1143977234939409436, guid: 77fbfe8dabffce9438b6d64a06dc672b, type: 3}
+  platedIcon: {fileID: 4961831064222900625, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 2

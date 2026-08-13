@@ -137,10 +137,10 @@ TextureImporter:
       name: Tray_0
       rect:
         serializedVersion: 2
-        x: 1552
-        y: 1450
-        width: 923
-        height: 527
+        x: 0
+        y: 0
+        width: 3840
+        height: 2160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,165 +155,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Tray_1
-      rect:
-        serializedVersion: 2
-        x: 2527
-        y: 1450
-        width: 926
-        height: 527
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a03b09b5fed7379e0800000000000000
-      internalID: -1624816573563751670
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tray_2
-      rect:
-        serializedVersion: 2
-        x: 351
-        y: 747
-        width: 472
-        height: 483
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 219cd5626072243e0800000000000000
-      internalID: -2071049971270039278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tray_3
-      rect:
-        serializedVersion: 2
-        x: 852
-        y: 747
-        width: 472
-        height: 483
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d67e1c493bf6f9470800000000000000
-      internalID: 8403558246782199661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tray_4
-      rect:
-        serializedVersion: 2
-        x: 1552
-        y: 875
-        width: 923
-        height: 532
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98e7982e786df73b0800000000000000
-      internalID: -5512451539768607095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tray_5
-      rect:
-        serializedVersion: 2
-        x: 2527
-        y: 875
-        width: 926
-        height: 532
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04a9c5b356f7aaee0800000000000000
-      internalID: -1249045873877542336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tray_6
-      rect:
-        serializedVersion: 2
-        x: 351
-        y: 218
-        width: 472
-        height: 483
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 658d357b984602bd0800000000000000
-      internalID: -2657013237499570090
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tray_7
-      rect:
-        serializedVersion: 2
-        x: 852
-        y: 218
-        width: 472
-        height: 483
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d984a4d3c310e6e80800000000000000
-      internalID: -8183602114647668579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cdf9472696848294eb5d9a32d6ab6f7b
     internalID: 0
     vertices: []
     indices: 

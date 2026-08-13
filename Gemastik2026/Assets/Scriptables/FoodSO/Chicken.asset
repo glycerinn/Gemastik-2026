@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodSO
   foodName: Chicken
   icon: {fileID: 5336855417275088078, guid: 177bd0108f83d0040b862b496f0dc747, type: 3}
+  platedIcon: {fileID: -4573965155412036757, guid: 49476739fa899db4e9a67c6e1e335ca6, type: 3}
   category: 1
