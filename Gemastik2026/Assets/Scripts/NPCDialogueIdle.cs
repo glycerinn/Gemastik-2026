@@ -7,17 +7,36 @@ public class NPCDialogueIdle : MonoBehaviour
 
     public float interactDistance = 6f;
 
+    [Header("Fade")]
+    public float fadeSpeed = 5f;
+
+    private CanvasGroup canvasGroup;
+
+    private void Awake()
+    {
+        canvasGroup = InteractOption.GetComponent<CanvasGroup>();
+
+        if (canvasGroup == null)
+        {
+            canvasGroup = InteractOption.AddComponent<CanvasGroup>();
+        }
+
+        canvasGroup.alpha = 0f;
+    }
+
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(
+            transform.position,
+            player.position
+        );
 
-        if (distance <= interactDistance)
-        {
-            InteractOption.SetActive(true);
-        }
-        else
-        {
-            InteractOption.SetActive(false);
-        }
+        float targetAlpha = distance <= interactDistance ? 1f : 0f;
+
+        canvasGroup.alpha = Mathf.MoveTowards(
+            canvasGroup.alpha,
+            targetAlpha,
+            fadeSpeed * Time.deltaTime
+        );
     }
 }
