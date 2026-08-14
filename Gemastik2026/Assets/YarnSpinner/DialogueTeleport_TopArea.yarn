@@ -2,11 +2,11 @@
 ---
 Sopir: Mau pergi ke mana hari ini?
 -> Ke Desa
-    NPC: Siap, ayo pergi ke Desa!
+    Sopir: Siap, ayo pergi ke Desa!
     <<load_scene VillageScene>>
 -> Ke Danau
-    NPC: Pergi ke Danau!
+    Sopir: Pergi ke Danau!
     <<load_scene LakeScene>>
 -> Gak jadi
-    NPC: Baik lah!
+    Sopir: Baiklah!
 ===

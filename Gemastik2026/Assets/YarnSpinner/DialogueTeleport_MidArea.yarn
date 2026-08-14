@@ -1,12 +1,12 @@
 ﻿title: Teleporter2
 ---
-NPC: Mau pergi ke mana hari ini?
--> Ke Area Pegunungan
-    NPC: Baik, mari berangkat!
+NPC: Mau pergi ke mana?
+-> Ke Pegunungan
+    Sopir: Baik, mari berangkat!
     <<load_scene SideScroller>>
--> Ke Area Danau
-    NPC: Otw Danau.
+-> Ke Danau
+    Sopir: Ayo ke Danau!
     <<load_scene LakeScene>>
 -> Gak jadi
-    NPC: Oke, sampai jumpa!
+    Sopir: Baiklah!
 ===

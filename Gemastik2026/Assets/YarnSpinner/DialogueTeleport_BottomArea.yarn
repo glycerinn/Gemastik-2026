@@ -1,12 +1,12 @@
 ﻿title: Teleporter3
 ---
-NPC: Mau pergi ke mana hari ini?
--> Ke Area Pegunungan
-    NPC: Baik, mari berangkat!
+Sopir: Mau pergi ke mana?
+-> Ke Pegunungan
+    Sopir: Ayo!
     <<load_scene SideScroller>>
 -> Ke Desa
-    NPC: Siap, meluncur ke Desa!
+    Sopir: Pergi ke Desa!
     <<load_scene VillageScene>>
 -> Gak jadi
-    NPC: Oke, sampai jumpa!
+    Sopir: Baiklah!
 ===
