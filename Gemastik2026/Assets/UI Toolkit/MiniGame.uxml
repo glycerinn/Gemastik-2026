@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/MenuAssets/MainMenu.uss?fileID=7433441132597879392&amp;guid=68a830bf9f4b01441b3d61313cb1cf9c&amp;type=3#MainMenu"/>
-    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-image-tint-color: rgba(255, 255, 255, 0.58);">
+    <ui:VisualElement style="flex-grow: 1; background-image: resource(&quot;Sprites/textures/512x512&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.58);">
         <ui:Label text="Completed!" name="Label" style="font-size: 150px; margin-top: 120px; align-self: center; -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/Fonts/times-new-roman/times.ttf?fileID=12800000&amp;guid=ecb184ac1dc23b04889fbf61dd93a915&amp;type=3#times&quot;);"/>
         <ui:Button text="Back" name="BackButton" class="button" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/times-new-roman/times.ttf?fileID=12800000&amp;guid=ecb184ac1dc23b04889fbf61dd93a915&amp;type=3#times&quot;); background-image: url(&quot;project://database/Assets/UI/UISet.png?fileID=-926489685069194515&amp;guid=491c248f01c09264ab5ca29c0cb129fe&amp;type=3#UISet_10&quot;);"/>
     </ui:VisualElement>
