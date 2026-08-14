@@ -12,6 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca4d9b36e81b8e4d8f7aebfb7aa26ca, type: 3}
   m_Name: Tutorial 2
   m_EditorClassIdentifier: Assembly-CSharp::JournalEntrySO
-  title: Tutorial
-  description: insert tutorial text or something idk
+  title: Menyusun Menu Pangan - Piring
+  description: 'Piring pada Pawon Adhem memiliki jumlah
+
+    masing-masing dalam
+    bentuk persentase:
+
+    - 20%
+
+    - 30%
+
+    - 25% (1)
+
+    - 25% (2)
+
+    Angka-angka
+    tersebut harus diperhatikan
+
+    dalam menyusun makanan. Bandingkan dengan
+
+    diagram
+    yang berada di kiri atas.
+
+
+    Misalkan,
+
+    diagram memunculkan persentase
+    P45%, itu
+
+    mengartikan bahwa anak tersebut membutuhkan
+
+    protein sebesar
+    45%, maka kita harus susun
+
+    makanannya sesuai dengan apa yang dibutuhkan!'
   image: {fileID: -873048637846740066, guid: 2a4e83712a95fc442aa422f7b887368f, type: 3}

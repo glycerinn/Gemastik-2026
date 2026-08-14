@@ -10,21 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca4d9b36e81b8e4d8f7aebfb7aa26ca, type: 3}
-  m_Name: Tutorial 4
+  m_Name: Tutorial 6
   m_EditorClassIdentifier: Assembly-CSharp::JournalEntrySO
-  title: Menyusun Menu Pangan - Restock
-  description: 'Restock adalah fitur dimana jika bahan pangannya:
+  title: Data Bahan Pangan
+  description: 'Tiap bahan pangan memiliki kandungan nutrisi
 
-    - Habis
+    yang berbeda. Ada
+    protein, karbohidrat, serta
+
+    lemak. Dibawah ini adalah data-data
+
+    bahan
+    pangan tersedia:
+
+
+    Protein:
+
+    - Ikan
+
+    - Tempe
+
+    - Egg
+
+    - Daging
+    Sapi
+
+    - Daging Ayam
+
+
+    Karbohidrat:
+
+    - Pisang
+
+    - Nasi
+
+    - Kentang
+
+
+    Lemak:
 
     -
-    Tidak cocok sama selera anak
+    Kacang
 
-    - Tidak cocok sama kebutuhan gizi
+    - Susu
 
-    Kita
-    bisa restock/mengisi kembali bahan pangan tersebut.
+    - Keju
 
-    Restock bisa digunakan
-    berulang kali.'
+    - Alpukat'
   image: {fileID: 7295720092626980286, guid: 0ebd96cf18e51ed4fa37135b2dca555a, type: 3}

@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca4d9b36e81b8e4d8f7aebfb7aa26ca, type: 3}
   m_Name: Tutorial 1
   m_EditorClassIdentifier: Assembly-CSharp::JournalEntrySO
-  title: Tutorial
-  description: insert tutorial text or something idk
+  title: Kontrol
+  description: 'A: Jalan ke Kiri
+
+    D: Jalan ke Kanan
+
+    E: Interaksi
+
+    Klik
+    Kiri Dua Kali (Sesi Memasak): Simpan Kembali Bahan Pangan
+
+    Esc: Tombol Pause'
   image: {fileID: -8146606374147342073, guid: 01d832c9c9e411e4194fbace5a0bfd49, type: 3}

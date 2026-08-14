@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CutsceneDialogue : MonoBehaviour
 {
@@ -20,6 +19,8 @@ public class CutsceneDialogue : MonoBehaviour
     private Coroutine typingCoroutine;
 
     private bool isTyping;
+    private bool isTransitioning; // NEW
+
     private string currentText;
 
     private TextMeshProUGUI currentTextObject;
@@ -31,6 +32,10 @@ public class CutsceneDialogue : MonoBehaviour
 
     private void Update()
     {
+        // Ignore clicks once scene transition has started
+        if (isTransitioning)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             HandleClick();
@@ -61,6 +66,9 @@ public class CutsceneDialogue : MonoBehaviour
         // All dialogue finished
         else
         {
+            // LOCK INPUT IMMEDIATELY
+            isTransitioning = true;
+
             Debug.Log("Cutscene finished. Loading game scene...");
 
             FadeManager.Instance.LoadSceneWithFade(gameSceneName);

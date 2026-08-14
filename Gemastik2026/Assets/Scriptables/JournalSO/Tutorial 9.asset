@@ -10,18 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca4d9b36e81b8e4d8f7aebfb7aa26ca, type: 3}
-  m_Name: Tutorial 3
+  m_Name: Tutorial 9
   m_EditorClassIdentifier: Assembly-CSharp::JournalEntrySO
-  title: Menyusun Menu Pangan - Diagram Persentase
-  description: 'Diagram Persentase menampilkan 3 nutrisi makro:
-
-    - Protein (PN%)
-
-    -
-    Karbohidrat (CN%)
-
-    - Lemak (FN%)
-
-    Catatan: N adalah angka yang ditampilkan
-    oleh diagram.'
-  image: {fileID: -7908872469103156650, guid: 4584b3f658902df4cb34b299acd184b9, type: 3}
+  title: Minigame - Pisang
+  description: "Untuk memainkan minigame ini, kita harus\nmenangkap pisang yang berjatuhan
+    dengan cara \nmenekan tombol LMB (left mouse button)\npada pisang-pisang tersebut.\n"
+  image: {fileID: 7295720092626980286, guid: 0ebd96cf18e51ed4fa37135b2dca555a, type: 3}

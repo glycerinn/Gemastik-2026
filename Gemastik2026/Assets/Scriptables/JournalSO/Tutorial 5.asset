@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca4d9b36e81b8e4d8f7aebfb7aa26ca, type: 3}
-  m_Name: Tutorial 3
+  m_Name: Tutorial 5
   m_EditorClassIdentifier: Assembly-CSharp::JournalEntrySO
-  title: Menyusun Menu Pangan - Diagram Persentase
-  description: 'Diagram Persentase menampilkan 3 nutrisi makro:
+  title: Menyusun Menu Pangan - Data Anak
+  description: 'Kita membutuhkan data anak untuk mengetahui
 
-    - Protein (PN%)
+    bahan pangan apa
+    yang cocok dengan seleranya.
 
-    -
-    Karbohidrat (CN%)
+    Kalau dikasih asal-asal, maka anak enggan untuk
 
-    - Lemak (FN%)
+    memakannya,
+    meski kalau makanan tersebut bergizi.
 
-    Catatan: N adalah angka yang ditampilkan
-    oleh diagram.'
-  image: {fileID: -7908872469103156650, guid: 4584b3f658902df4cb34b299acd184b9, type: 3}
+    Jadi selalu dicek ya datanya!'
+  image: {fileID: 7295720092626980286, guid: 0ebd96cf18e51ed4fa37135b2dca555a, type: 3}

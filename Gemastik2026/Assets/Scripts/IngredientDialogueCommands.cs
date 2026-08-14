@@ -7,14 +7,17 @@ public class IngredientDialogueCommands : MonoBehaviour
 
     private void Awake()
     {
-        dialogueRunner.AddCommandHandler("give_reward", GiveReward);
+        dialogueRunner.AddCommandHandler(
+            "give_reward",
+            GiveReward
+        );
     }
 
     private void GiveReward()
     {
         if (IngredientNPC.CurrentNPC == null)
         {
-            Debug.LogWarning("No IngredientNPC is currently talking.");
+            Debug.LogWarning("No Ingredient NPC is currently talking.");
             return;
         }
 

@@ -12,6 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca4d9b36e81b8e4d8f7aebfb7aa26ca, type: 3}
   m_Name: Tutorial
   m_EditorClassIdentifier: Assembly-CSharp::JournalEntrySO
-  title: Tutorial
-  description: insert tutorial text or something idk
+  title: Pembuka
+  description: 'Selamat dating di Pawon Adhem: Dapur Sejuk!
+
+    Tugas kamu disini
+    adalah membuat menu buat anak-anak.
+
+    Sebelum itu, kita harus jelajah desa
+    terlebih dahulu.
+
+    Buat ngumpulin bahan pangan dan ngebantuin warga.
+
+    Setelah
+    semua bahan pangan sudah dikumpul, kamu
+
+    harus balik ke pegunungan, naik
+    ke "Pawon Adhem"
+
+    untuk memulai memasak!'
   image: {fileID: -4549871927518758641, guid: cc689a1fa2d590540990cc8626969ffc, type: 3}

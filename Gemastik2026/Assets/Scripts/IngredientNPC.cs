@@ -12,7 +12,7 @@ public class IngredientNPC : MonoBehaviour
     [Header("Reward")]
     public FoodSO rewardFood;
     private bool rewardGiven;
-    
+
     public Transform player;
     public float interactDistance = 2f;
 
@@ -24,20 +24,23 @@ public class IngredientNPC : MonoBehaviour
 
     public void Awake()
     {
-        dialogueRunner.AddCommandHandler("give_reward", () => {GiveReward();});
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         if (spriteRenderer != null)
             spriteRenderer.color = normalColor;
 
-        Debug.Log("Registered StartGame");
-    } 
+        Debug.Log("Ingredient NPC initialized: " + name);
+    }
 
     private void Update()
     {
         if (dialogueRunner.IsDialogueRunning)
             return;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(
+            transform.position,
+            player.position
+        );
 
         if (spriteRenderer != null)
         {
@@ -46,7 +49,8 @@ public class IngredientNPC : MonoBehaviour
                 : normalColor;
         }
 
-        if (distance <= interactDistance && Input.GetKeyDown(KeyCode.E))
+        if (distance <= interactDistance &&
+            Input.GetKeyDown(KeyCode.E))
         {
             Talk();
         }
@@ -54,23 +58,38 @@ public class IngredientNPC : MonoBehaviour
 
     public void Talk()
     {
-        Debug.Log("Called");
         CurrentNPC = this;
+
+        Debug.Log(
+            "Talking to: " + name +
+            " | Reward: " + rewardFood.foodName
+        );
+
         dialogueRunner.StartDialogue(dialogueNode);
     }
 
     public void GiveReward()
     {
         if (rewardGiven)
+        {
+            Debug.Log(name + " already gave their reward.");
             return;
+        }
 
         rewardGiven = true;
+
         IngredientManager.Instance.UnlockFood(rewardFood);
+
         TownGameManager.Instance.CollectIngredient(rewardFood);
+
         if (InventoryUI.Instance != null)
         {
             InventoryUI.Instance.RefreshInventory();
         }
-        Debug.Log($"{name} gave {rewardFood.foodName}");
+
+        Debug.Log(
+            name + " gave " +
+            rewardFood.foodName
+        );
     }
 }
