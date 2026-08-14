@@ -1,12 +1,12 @@
 ﻿title: Teleporter1
 ---
-NPC: Mau pergi ke mana hari ini?
+Sopir: Mau pergi ke mana hari ini?
 -> Ke Desa
-    NPC: Siap, meluncur ke Desa!
+    NPC: Siap, ayo pergi ke Desa!
     <<load_scene VillageScene>>
--> Ke Area Danau
-    NPC: Otw Danau.
+-> Ke Danau
+    NPC: Pergi ke Danau!
     <<load_scene LakeScene>>
 -> Gak jadi
-    NPC: Oke, sampai jumpa!
+    NPC: Baik lah!
 ===

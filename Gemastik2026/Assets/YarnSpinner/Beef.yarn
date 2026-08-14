@@ -1,0 +1,10 @@
+﻿title: Beef
+---
+Tukang Daging: Hallo, barusan motong daging sapi! Kamu mau gak?
+-> Yowes mau. 
+    Tukang Daging: Baik lah!
+    <<give_reward>>
+-> Tidak, makasih ya.
+    Tukang Daging: Sip.
+
+===

@@ -1,0 +1,11 @@
+﻿title: Chicken
+---
+Peternak Ayam: Ayam segar, ayam segar!
+Peternak Ayam: Misi pak, mau ayam segar?
+-> Mau. 
+    Peternak Ayam: Baik!
+    <<give_reward>>
+-> Maaf, tidak mau.
+    Tukang Daging: Baik!
+
+===

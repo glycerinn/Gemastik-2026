@@ -1,0 +1,11 @@
+﻿title: Egg
+---
+Anak Peternak Ayam: Pagi pak, ayam-ayam barusan bertelur!
+Anak Peternak Ayam: Lagi ada lebih nih, kamu mau tidak?
+-> Mau donk! 
+    Peternak Ayam: Yowes!
+    <<give_reward>>
+-> Oh maaf ya, lagi gak mau telur.
+    Tukang Daging: Ok!
+
+===

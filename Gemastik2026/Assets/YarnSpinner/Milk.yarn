@@ -1,0 +1,12 @@
+﻿title: Milk
+---
+Peternak Sapi: Waduh, lagi kebanyakan susu nih.
+Peternak Sapi: Gimana ya simpennya?
+Peternak Sapi: Eh, kamu lagi mau susu?
+Peternak Sapi: Lagi kelebihan susu nih.
+-> Yes, mau donk.
+    Peternak Sapi: Mantab!
+    <<give_reward>>
+-> Oh maaf ya, lagi gak perlu.
+    Tukang Daging: Yahh..
+===

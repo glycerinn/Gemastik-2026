@@ -1,0 +1,12 @@
+﻿title: Cheese
+---
+<<show_character>>
+Maniak Keju: Keju.
+Kamu: ..keju?
+Maniak Keju: Keju.
+-> Yes, lagi pengen keju.
+    Maniak Keju: Keju.
+    <<give_reward>>
+-> No, gak pengen keju.
+    Maniak Keju: Keju.
+===

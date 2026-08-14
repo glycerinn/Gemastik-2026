@@ -1,0 +1,10 @@
+﻿title: Potato
+---
+Kolektor Kentang: ..mau kentang gua gak?
+-> ..mau? 
+    Kolektor Kentang: kentang.
+    <<give_reward>>
+-> ..tidak?
+    Kolektor Kentang: ..lu bakal dikutuk jadi kentang.
+
+===

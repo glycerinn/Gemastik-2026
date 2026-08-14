@@ -1,0 +1,11 @@
+﻿title: Avocado
+---
+Pekebun Alpukat: Hallo, barusan panen alpukat!
+Pekebun Alpukat: Lagi kelebihan alpukat nih, mau gak?
+-> Yowes. 
+    Pekebun Alpukat: Baiklah klo gitu!
+    <<give_reward>>
+-> Tidak, makasih ya.
+    Pekebun Alpukat: Klo berubah pikiran, mampir ya!
+
+===
