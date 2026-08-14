@@ -7,9 +7,11 @@ public class MainMenuEvents : MonoBehaviour
     private UIDocument uIDocument;
     private Label title;
     private Button button;
+    private AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         uIDocument = GetComponent<UIDocument>();
 
         button = uIDocument.rootVisualElement.Q("StartGameButton") as Button;
@@ -18,13 +20,26 @@ public class MainMenuEvents : MonoBehaviour
 
     private void Start()
     {
+        int random = Random.Range(0, 3);
 
+        if (random == 0)
+        {
+            audioManager.playLakeA();
+        }
+        else if (random == 1)
+        {
+            audioManager.playMountainA();
+        }
+        else
+        {
+            audioManager.playVillageA();
+        }
     }
 
     private void OnPlayGame(ClickEvent evt)
     {
         Debug.Log("pressed");
-
+        audioManager.playClickSFX();
         // Pastikan waktu berjalan normal
         Time.timeScale = 1f;
 

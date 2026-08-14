@@ -8,11 +8,12 @@ public class MiniGameUIEvents : MonoBehaviour
     private Button button;
     public MinigameType minigameType;
     public FoodSO rewardFood;
+    private AudioManager audioManager;
 
     private void Awake()
     {
         uIDocument = GetComponent<UIDocument>();
-
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         button = uIDocument.rootVisualElement.Q("BackButton") as Button;
         if (button != null)
         {
@@ -28,7 +29,7 @@ public class MiniGameUIEvents : MonoBehaviour
     private void OnPlayGame(ClickEvent evt)
     {
         Debug.Log("pressed");
-
+        audioManager.playClickSFX();
         // Simpan data game terlebih dahulu
         TownGameManager.Instance.CollectIngredient(rewardFood);
         TownGameManager.Instance.CompleteMinigame(minigameType);

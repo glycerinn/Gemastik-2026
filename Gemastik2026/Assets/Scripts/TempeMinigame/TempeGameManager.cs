@@ -5,7 +5,7 @@ public class TempeGameManager : MonoBehaviour
 {
     public static TempeGameManager Instance;
 
-    public int targetScore = 30;
+    public int targetScore = 50;
     public int score = 0;
 
     public TMP_Text scoreText;

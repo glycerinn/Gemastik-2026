@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: flex-start;
     align-self: center;
-    height: 100px;
+    height: 75px;
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -15,20 +15,21 @@
     transition-property: all;
     transition-duration: 0.25s;
     transition-timing-function: ease-in-out;
+    background-image: url("project://database/Assets/UI/UISet.png?fileID=-926489685069194515&guid=491c248f01c09264ab5ca29c0cb129fe&type=3#UISet_10");
+    -unity-slice-scale: 0.2px;
 }
 
 .button:hover {
     align-items: center;
     justify-content: flex-start;
     align-self: center;
-    width: 350px;
+    width: 375px;
     margin-top: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
     margin-left: 20px;
-    height: 125px;
-    rotate: 2deg;
-    background-color: rgb(21, 255, 10);
+    height: 100px;
+    rotate: 0 0 0 0;
     font-size: 55px;
 }
 
@@ -42,5 +43,3 @@
     transition-timing-function: ease-in;
     transition-duration: 1s;
 }
-
-

@@ -57,8 +57,13 @@ public class FishingMinigame : MonoBehaviour
     private Vector3 originalMarkerScale;
     private Vector2 originalTrackPos;
 
+    private AudioManager audioManager;
+    private Coroutine fishingSFXCoroutine;
+    private bool fishingSFXRunning;
+
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         if (marker) originalMarkerScale = marker.localScale;
         if (trackArea) originalTrackPos = trackArea.anchoredPosition;
         ResetDifficulty();
@@ -81,6 +86,29 @@ public class FishingMinigame : MonoBehaviour
         {
             stopAction.action.performed -= OnStopPerformed;
             stopAction.action.Disable();
+        }
+    }
+
+    private IEnumerator FishingSFXLoop()
+    {
+        fishingSFXRunning = true;
+
+        while (fishingSFXRunning)
+        {
+            audioManager.playFishingSFX();
+
+            yield return new WaitForSeconds(audioManager.Fishingsfx.length);
+        }
+    }
+
+    private void StopFishingSFX()
+    {
+        fishingSFXRunning = false;
+
+        if (fishingSFXCoroutine != null)
+        {
+            StopCoroutine(fishingSFXCoroutine);
+            fishingSFXCoroutine = null;
         }
     }
 
@@ -118,8 +146,11 @@ public class FishingMinigame : MonoBehaviour
 
         if (markerImage) markerImage.color = normalColor;
         marker.localScale = originalMarkerScale;
+        if (!fishingSFXRunning)
+        {
+            fishingSFXCoroutine = StartCoroutine(FishingSFXLoop());
+        }
 
-        // KUNCI PERBAIKAN: Kembalikan posisi X marker ke tengah jalur (0) agar tidak melompat/bergeser
         var markerPos = marker.anchoredPosition;
         markerPos.x = 0f;
         marker.anchoredPosition = markerPos;
@@ -160,6 +191,7 @@ public class FishingMinigame : MonoBehaviour
 
         if (isSuccess)
         {
+            audioManager.playFishingSuccessSFX();
             currentAttempt++;
             consecutiveCatches++;
             UpdateDifficulty();
@@ -189,7 +221,7 @@ public class FishingMinigame : MonoBehaviour
             state = State.Result;
             ResetDifficulty();
             onMiss?.Invoke();
-
+            audioManager.playFishingFailSFX();
             StartCoroutine(MissPolishRoutine());
         }
     }
@@ -280,6 +312,7 @@ public class FishingMinigame : MonoBehaviour
         }
         else
         {
+            StopFishingSFX();
             Debug.Log("Fishing complete!");
             if (completedPanel) completedPanel.SetActive(true);
         }

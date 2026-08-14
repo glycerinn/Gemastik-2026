@@ -14,9 +14,16 @@ public class GateQueue : MonoBehaviour
     Sortable sortable;
     private bool Busy;
     public GameObject GameOverScreen;
-    public int targetScore = 30;
+    public int targetScore = 50;
     private int currentScore = 0;
     public TextMeshProUGUI scoreText;
+
+    private AudioManager audioManager;
+
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
@@ -34,6 +41,7 @@ public class GateQueue : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
+            audioManager.playSwipeSFX();
             Vector3 targetPos = currentItem.transform.position + Vector3.up * 6;
             if (currentItem.GetSortableType() == Sortable.SortableType.Fish)
             {
@@ -49,6 +57,7 @@ public class GateQueue : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
+            audioManager.playSwipeSFX();
             Vector3 targetPos = currentItem.transform.position + Vector3.down * 5;
             if (currentItem.GetSortableType() == Sortable.SortableType.Trash)
             {

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tempe
   - PlayerImage
+  - AudioManager
   layers:
   - Default
   - TransparentFX

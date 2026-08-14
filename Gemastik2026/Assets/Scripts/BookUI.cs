@@ -14,16 +14,19 @@ public class BookUI : MonoBehaviour
     private Vector2 originalPosition;
     private Vector3 originalScale;
 
+    private AudioManager audioManager;
+
     private void Awake()
     {
         bookRect = bookPanel.GetComponent<RectTransform>();
-
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         originalPosition = bookRect.anchoredPosition;
         originalScale = bookRect.localScale;
     }
 
     public void OpenBook()
     {
+        audioManager.playBookClickSFX();
         bookPanel.SetActive(true);
 
         bookRect.localScale = originalScale * startScale;

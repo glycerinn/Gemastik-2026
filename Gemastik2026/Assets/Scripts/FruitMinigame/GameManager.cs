@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Game Settings")]
-    public int targetTrash = 30;
+    public int targetTrash = 50;
     private int collectedTrash = 0;     // Skor Total
     private int currentStreak = 0;      // Tingkat Kesulitan (Akan reset ke 0 jika jatuh)
 

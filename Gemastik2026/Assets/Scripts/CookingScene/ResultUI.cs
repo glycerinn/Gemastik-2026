@@ -17,9 +17,16 @@ public class ResultUI : MonoBehaviour
 
     public string nextScene;
     public string mainMenuScene;
+    private AudioManager audioManager;
+
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
+        audioManager.playWinLoseBGM();
         if (panel != null) panel.SetActive(false);
     }
 

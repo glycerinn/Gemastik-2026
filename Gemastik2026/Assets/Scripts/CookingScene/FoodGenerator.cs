@@ -14,6 +14,12 @@ public class FoodGenerator : MonoBehaviour
 
     // Flag untuk mengunci tombol (cooldown)
     private bool isRerolling = false;
+    private AudioManager audioManager;
+
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -79,6 +85,7 @@ public class FoodGenerator : MonoBehaviour
 
     public void Reroll()
     {
+        audioManager.playRestockSFX();
         // Jika sedang reroll, abaikan klik (Cooldown system)
         if (isRerolling) return;
         StartCoroutine(RerollRoutine());

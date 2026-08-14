@@ -10,15 +10,17 @@ public class RiceGameManager : MonoBehaviour
     public List<Rice> riceList;
     public TMP_Text scoreText;
     public GameObject winPanel;
-    public int targetScore = 30;
+    public int targetScore = 50;
 
     [Header("Polishing Settings")]
     public ParticleSystem harvestParticlePrefab;
 
     private int score = 0;
+    private AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         Instance = this;
     }
 
@@ -60,6 +62,7 @@ public class RiceGameManager : MonoBehaviour
 
         if (clickedRice.stage == Rice.RiceStage.Ready)
         {
+            audioManager.playTrashHarvestTakeSFX();
             SpawnHarvestParticle(clickedRice.transform.position, clickedRice.transform);
 
             StartCoroutine(clickedRice.HarvestRoutine(() =>

@@ -10,15 +10,18 @@ public class BookHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private RectTransform rectTransform;
     private Vector2 originalPosition;
     private Coroutine moveCoroutine;
-
+    private AudioManager audioManager;
+    
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         rectTransform = GetComponent<RectTransform>();
         originalPosition = rectTransform.anchoredPosition;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        audioManager.playHoverSFX();
         StartMove(originalPosition + Vector2.up * hoverHeight);
     }
 

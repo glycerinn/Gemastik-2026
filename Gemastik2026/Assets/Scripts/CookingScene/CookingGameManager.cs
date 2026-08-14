@@ -17,15 +17,18 @@ public class CookingGameManager : MonoBehaviour
 
     private int successfulMeals;
     private int failedMeals;
+    private AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         submitCanvasGroup = submitButton.GetComponent<CanvasGroup>();
         if (submitCanvasGroup == null) submitCanvasGroup = submitButton.AddComponent<CanvasGroup>();
     }
 
     private void Start()
     {
+        audioManager.playCookBGM();
         submitCanvasGroup.alpha = 0f;
         submitCanvasGroup.interactable = false;
         submitCanvasGroup.blocksRaycasts = false;
@@ -92,6 +95,7 @@ public class CookingGameManager : MonoBehaviour
 
     public void SubmitMeal()
     {
+        audioManager.playSubmitSFX();
         plateManager.CalculatePlate();
         bool success = CheckMeal();
 

@@ -14,9 +14,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private RectTransform rectTransform;
     private Vector3 originalScale;
     private Coroutine scaleCoroutine;
+    private AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         rectTransform = GetComponent<RectTransform>();
         originalScale = rectTransform.localScale;
 
@@ -37,8 +39,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Hovered: " + gameObject.name);
-
+        audioManager.playHoverSFX();
         StartScale(originalScale * hoverScale);
     }
 

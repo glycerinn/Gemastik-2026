@@ -15,6 +15,13 @@ public class DoorOutline : MonoBehaviour
     [Header("Pengaturan Fade Transisi")]
     public float fadeDuration = 0.8f; // Sesuaikan dengan durasi fade di FadeManager
 
+    private AudioManager audioManager;
+
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
@@ -25,6 +32,7 @@ public class DoorOutline : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerInRange)
         {
+            audioManager.playDoorSFX();
             // Matikan visual pintu jika diinginkan
             if (door != null) door.SetActive(false);
 

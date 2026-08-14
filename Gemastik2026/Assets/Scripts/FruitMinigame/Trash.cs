@@ -35,6 +35,13 @@ public class Trash : MonoBehaviour, IPointerClickHandler
     private bool isCaught = false;
     private bool isMissed = false;
 
+    private AudioManager audioManager;
+
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         rect = GetComponent<RectTransform>();
@@ -70,20 +77,15 @@ public class Trash : MonoBehaviour, IPointerClickHandler
     {
         if (isCaught) return;
 
-        // --- GERAKAN DINAMIS ---
-        // Menghitung ayunan ke kiri/kanan menggunakan gelombang Sinus
         float swayX = Mathf.Sin(Time.time * currentSwaySpeed + randomTimeOffset) * currentSwayAmount;
 
-        // Aplikasikan pergerakan (Turun ke bawah + Mengayun ke samping)
         rect.anchoredPosition += new Vector2(swayX, -currentFallSpeed) * Time.deltaTime;
 
-        // Aplikasikan rotasi agar buah berputar organik
         rect.Rotate(0f, 0f, currentRotationSpeed * Time.deltaTime);
-        // -----------------------
 
-        // Cek jika lolos ke bawah layar
         if (!isMissed && rect.anchoredPosition.y < -1080 / 2f - 50f)
         {
+            audioManager.playBananaFallSFX();
             isMissed = true;
             StartCoroutine(MissFadeOutRoutine());
         }
@@ -170,6 +172,7 @@ public class Trash : MonoBehaviour, IPointerClickHandler
     {
         if (isCaught || isMissed) return;
         isCaught = true;
+        audioManager.playBananaCollectSFX();
 
         if (GameManager.instance != null)
         {

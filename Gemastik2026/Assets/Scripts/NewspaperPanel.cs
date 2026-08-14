@@ -26,9 +26,11 @@ public class NewspaperPanel : MonoBehaviour
     private RectTransform newspaperRect;
     private Vector2 originalPosition;
     private Coroutine currentAnimation;
+    private AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         newspaperRect = newspaperWindow.GetComponent<RectTransform>();
         originalPosition = newspaperRect.anchoredPosition;
     }
@@ -65,6 +67,7 @@ public class NewspaperPanel : MonoBehaviour
 
     public void OpenWithAnimation()
     {
+        audioManager.playNewsOpenSFX();
         if (currentAnimation != null)
             StopCoroutine(currentAnimation);
 
@@ -114,6 +117,7 @@ public class NewspaperPanel : MonoBehaviour
 
     public void CloseNewspaper()
     {
+        audioManager.playNewsCloseSFX();
         if (currentAnimation != null)
             StopCoroutine(currentAnimation);
 

@@ -1,12 +1,21 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class SceneBGM
+{
+    public string sceneName;
+    public AudioClip bgm;
+}
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Scene BGM")]
+    public SceneBGM[] sceneBGMs;   
+
     [SerializeField] AudioSource BGM;
     [SerializeField] AudioSource AMB;
     [SerializeField] AudioSource SFX;
-
-    public AudioClip MainMenuBGM;
 
     [Header("Ambience")]
     public AudioClip LakeA;
@@ -68,6 +77,8 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -75,16 +86,28 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        foreach (SceneBGM sceneBGM in sceneBGMs)
+        {
+            if (sceneBGM.sceneName == scene.name)
+            {
+                if (sceneBGM.bgm != null)
+                {
+                    BGM.clip = sceneBGM.bgm;
+                    BGM.loop = true;
+                    BGM.Play();
+                }
+
+                return;
+            }
+        }
+    }
+
 
     // =========================
     // BGM
     // =========================
-
-    public void playMainMenuBGM()
-    {
-        BGM.clip = MainMenuBGM;
-        BGM.Play();
-    }
 
     public void playLakeBGM()
     {

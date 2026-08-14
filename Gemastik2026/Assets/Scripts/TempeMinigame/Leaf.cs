@@ -16,8 +16,11 @@ public class Leaf : MonoBehaviour
     private Collider2D col;
     private Vector3 originalScale;
 
+    private AudioManager audioManager;
+
     void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
         originalScale = transform.localScale;
@@ -31,6 +34,7 @@ public class Leaf : MonoBehaviour
         if (occupied) return;
         if (!other.CompareTag("Tempe")) return;
 
+        audioManager.playWrapSFX();
         occupied = true;
 
         DragTemp temp = other.GetComponent<DragTemp>();

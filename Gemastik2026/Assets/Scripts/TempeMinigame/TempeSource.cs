@@ -6,11 +6,18 @@ public class TempeSource : MonoBehaviour
     public Transform spawnPoint;
 
     private GameObject currentSquare;
+    private AudioManager audioManager;
+
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
 
     private void OnMouseDown()
     {
         Debug.Log("Source clicked");
         SpawnTempe();
+        audioManager.playTrashHarvestTakeSFX();
     }
 
     public void SpawnTempe()
