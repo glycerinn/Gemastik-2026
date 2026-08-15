@@ -47,8 +47,7 @@ public class FoodGenerator : MonoBehaviour
     {
         foreach (Transform child in slot.transform) Destroy(child.gameObject);
 
-        GameObject obj = Instantiate(itemPrefab);
-        obj.transform.SetParent(slot.transform, false);
+        GameObject obj = Instantiate(itemPrefab, slot.transform, false);
 
         RectTransform rt = obj.GetComponent<RectTransform>();
         rt.anchorMin = Vector2.zero;

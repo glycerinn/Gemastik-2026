@@ -177,6 +177,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   sceneBGMs:
+  - sceneName: MainMenu
+    bgm: {fileID: 8300000, guid: 0610268337497c24e8d81c802da62b40, type: 3}
+    ambience: {fileID: 8300000, guid: 8df5cdca12541c940a74a89966ecee76, type: 3}
+  - sceneName: Cutscene
+    bgm: {fileID: 8300000, guid: 0610268337497c24e8d81c802da62b40, type: 3}
+    ambience: {fileID: 8300000, guid: 8df5cdca12541c940a74a89966ecee76, type: 3}
   - sceneName: SideScroller
     bgm: {fileID: 8300000, guid: 1ba2bff62a318c048a46005b217514a5, type: 3}
     ambience: {fileID: 8300000, guid: 8df5cdca12541c940a74a89966ecee76, type: 3}

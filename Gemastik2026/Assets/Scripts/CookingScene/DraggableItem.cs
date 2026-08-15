@@ -16,14 +16,15 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private void Awake()
     {
-        canvas = FindFirstObjectByType<Canvas>();
-        canvasGroup = GetComponent<CanvasGroup>();
-
-        if (canvasGroup == null)
-            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        canvas = GetComponentInParent<Canvas>();
 
         if (canvas == null)
-            Debug.LogError("No Canvas found!");
+        {
+            canvas = FindFirstObjectByType<Canvas>();
+        }
+
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -21,6 +21,7 @@ public class CookingGameManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;
         audioManager = AudioManager.instance;
         submitCanvasGroup = submitButton.GetComponent<CanvasGroup>();
         if (submitCanvasGroup == null) submitCanvasGroup = submitButton.AddComponent<CanvasGroup>();

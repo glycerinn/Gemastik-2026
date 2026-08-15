@@ -1,9 +1,24 @@
 ﻿title: Tempe
 ---
 <<show_character>>
-Indri: Halo, kamu sedang cari bahan-bahan ya?
-Indri: Pohon pisangku sedang berbuah.
-Indri: Jika kamu mau, kamu bisa bantu saya panen.
+Indri: Halo adek, sini bentar.
+Kamu: Iya, kenapa bu?
+Indri: Tolong bantuin ibu dek, bantu ngebungkus tempe.
+Kamu: Wah bu, gak ngerti caranya.
+Indri: Gak apa-apa, ibu ajarin.
+Indri: Adek cuman ambil adonan tempe.
+Indri: Lalu adek taro adonan tempenya di daun pisang.
+Kamu: Kalo ngelipetnya gimana?
+Indri: Klo itu, biar ibu lipet aja ya dek.
 -> Sip, saya bantu.
--> Ntar lagi ya.
+    Indri: Makasih banget ya dek.
+    Indri: Nanti ibu hadiahin tempe.
+    Indri: Sini, masuk ke rumah ibu.
+    Permainan Video: Pergi ke rumah ibu Indri untuk memulai misi membuat tempe.
+-> Ntar lagi ya, lagi ada kesibukan.
+    Indri: Baik dek.
+    Indri: Klo ada waktu, tolong ibu ya.
+    Indri: Rumah ibu ada di bekalang ya.
+    Indri: Nanti ibu hadiahin tempe.
+    Permainan Video: Pergi ke rumah ibu Indri jika ingin memulai misi membuat tempe.
 ===

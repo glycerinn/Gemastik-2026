@@ -1,9 +1,31 @@
 ﻿title: Ikan
 ---
 <<show_character>>
-Anto: Halo, kamu sedang cari bahan-bahan ya?
-Anto: Pohon pisangku sedang berbuah.
-Anto: Jika kamu mau, kamu bisa bantu saya panen.
--> Sip, saya bantu.
--> Ntar lagi ya.
+Anto: Pagi mas, sedang apa kamu jalan-jalan kesana kemari?
+Kamu: Pagi pak, lagi nyari bahan pangan buat anak-anak sekolah.
+Anto: Oh, bapak denger klo mereka lagi sakit-sakitan ya?
+Kamu: Gak juga, mereka masi ok-ok saja kok.
+Kamu: Tetapi mereka lagi gak dapet gizi yang cukup nih.
+Kamu: Kalau gak diurus gizi mereka, nanti malnutrisi.
+Anto: Malnutrisi?
+Kamu: Kek kekurangan gizi gitu.
+Anto: Oh, klo gitu, bapak mungkin bisa ngasih beberapa ikan.
+Kamu: Hah? Serius?
+Anto: Iya, serius. Emang butuh berapa ikan?
+Kamu: 100.
+Anto: Astaga, mas kira bapak bisa kasih segitu banyak?
+Kamu: Kagak.
+Anto: Halah.
+Anto: Gini deh, mas bisa pergi ke gudang bapak buat ambil perlengkapan pancing ekstra.
+Kamu: Dimana?
+Anto: Dibelakang kamu mas, itu ada lambang ikan juga. Masa gak liat.
+Kamu: Hehe.
+Anto: Klo gitu, ambil sana.
+-> Siap pak.
+    Anto: Nanti jangan lupa ya balikin perlengkapannya.
+    Permainan Video: Pergi ke gudang pak Anto untuk memulai misi memancing ikan.
+-> Tapi pak, boleh gak klo saya minta 100 ikan dari bapak aja?
+    Anto: Gak.
+    Kamu: Yah, yang penting udah coba.
+    Permainan Video: Pergi ke gudang pak Anto untuk memulai misi memancing ikan.
 ===

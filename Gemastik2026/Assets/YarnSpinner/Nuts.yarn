@@ -1,9 +1,33 @@
 ﻿title: Nuts
 ---
 <<show_character>>
-Dono: Halo, kamu sedang cari bahan-bahan ya?
-Dono: Pohon pisangku sedang berbuah.
-Dono: Jika kamu mau, kamu bisa bantu saya panen.
--> Sip, saya bantu.
--> Ntar lagi ya.
+Dono: Wahai panglimaku!
+Kamu: Halo-halo.
+Dono: Sedang apa kau?
+Kamu: Nyari bahan pangan.
+Dono: Ohh, buat anak-anak ya?
+Kamu: Iya bener, buat kesehatan mereka.
+Dono: Sini deh bentar.
+Dono: Lu butuh kacang-kacang?
+-> Iya, butuh.
+    Dono: Klo gitu, bantu gue dulu ya.
+    Kamu: Bantu apa dulu nih?
+    Dono: Sortir kacang, mudah kok.
+    Kamu: Cara bedainnya gimana?
+    Dono: Mudah lah, klo kacangnya keliatan bersih ama gak rusak, itu berarti kacang bagus.
+    Dono: Klo kacang jelek, pasti keliatan kek busuk, rusak, ngingetin mantan.
+    Kamu: Sip.
+    Dono: Pergi sono ke gudang kacang gue.
+    Dono: Deket, ada di belakang gue.
+    Kamu: Siap bossku.
+    Permainan Video: Pergi ke gudang kacang untuk memulai misi sortir kacang.
+-> Wah, lagi gak butuh-butuh banget sih.
+    Dono: Yah, gak apa-apa sih.
+    Dono: Klo lu berubah pikiran, lu bisa kunjungin gudang kacang belakang gue.
+    Dono: Nanti lu sortir kacangnya dulu ya, gak semua kacang siap diolah.
+    Kamu: Cara bedain kacang gimana?
+    Dono: Mudah lah, klo kacangnya keliatan bersih ama gak rusak, itu berarti kacang bagus.
+    Dono: Klo kacang jelek, pasti keliatan kek busuk, rusak, ngingetin mantan.
+    Kamu: Sip.
+    Permainan Video: Pergi ke gudang kacang jika ingin memulai misi sortir kacang.
 ===

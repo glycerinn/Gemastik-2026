@@ -1,9 +1,21 @@
 ﻿title: Nasi
 ---
 <<show_character>>
-Muhammad: Halo, kamu sedang cari bahan-bahan ya?
-Muhammad: Pohon pisangku sedang berbuah.
-Muhammad: Jika kamu mau, kamu bisa bantu saya panen.
--> Sip, saya bantu.
--> Ntar lagi ya.
+Kamu: Pagi pak!
+Muhammad: Wih, pagi nak. Lagi pengen beras lagi?
+Kamu: Iya nih, lagi butuh banyak banget.
+Muhammad: Kebetulan banget, bapak lagi siap-sap berangkat.
+Kamu: Wah, lagi panen nih?
+Muhammad: Iya, bener. Tapi butuh waktunya benar-benar lama lho.
+Muhammad: Butuh bantuan lebih kalau mau cepet, nak.
+Kamu: Wah, ngebantuin panen? Gimana?
+Muhammad: Panen aja padi yang berwarna kuning keemasan.
+Muhammad: Lalu panen deh.
+Muhammad: Siap panen, nak?
+-> Siap donk.
+    Muhammad: Yowes, ayo ke sawah.
+    Permainan Video: Pergi ke sawah untuk memulai misi panen padi.
+-> Maaf, lagi blom siap nih.
+    Muhammad: Yowes. Klo sudah siap, nyusul aja ya ke sawah.
+    Permainan Video: Pergi ke sawah jika ingin memulai misi panen padi.
 ===
