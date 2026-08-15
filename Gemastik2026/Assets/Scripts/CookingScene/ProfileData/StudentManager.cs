@@ -12,6 +12,13 @@ public class StudentManager : MonoBehaviour
     [Header("UI")]
     public StudentProfileUI profileUI;
 
+    [Header("Rounds Configuration")]
+    [Tooltip("Jumlah siswa dari kategori mayoritas")]
+    public int majorityStudentCount = 3;
+
+    [Tooltip("Jumlah siswa acak dari kategori lain")]
+    public int randomStudentCount = 1;
+
     public StudentSO CurrentStudent { get; private set; }
 
     private List<StudentSO> todaysStudents = new List<StudentSO>();
@@ -32,28 +39,30 @@ public class StudentManager : MonoBehaviour
         NutritionProblem majority = DayManager.Instance.currentProblem;
         List<StudentSO> majorityList = new List<StudentSO>(GetList(majority));
 
-        // Pick 3 unique students from the majority category
-        for (int i = 0; i < 3 && majorityList.Count > 0; i++)
+        // Gunakan variabel majorityStudentCount alih-alih angka 3
+        for (int i = 0; i < majorityStudentCount && majorityList.Count > 0; i++)
         {
             int randomIndex = Random.Range(0, majorityList.Count);
             todaysStudents.Add(majorityList[randomIndex]);
             majorityList.RemoveAt(randomIndex);
         }
 
-        // Pick one student from a different category
-        NutritionProblem randomProblem;
-
-        do
+        // Ambil siswa acak sesuai jumlah randomStudentCount
+        for (int i = 0; i < randomStudentCount; i++)
         {
-            randomProblem = (NutritionProblem)Random.Range(0, 4);
-        }
-        while (randomProblem == majority);
-        List<StudentSO> randomList = GetList(randomProblem);
+            NutritionProblem randomProblem;
+            do
+            {
+                randomProblem = (NutritionProblem)Random.Range(0, System.Enum.GetValues(typeof(NutritionProblem)).Length);
+            }
+            while (randomProblem == majority);
 
-        if (randomList.Count > 0)
-        {
-            todaysStudents.Add(
-                randomList[Random.Range(0, randomList.Count)]);
+            List<StudentSO> randomList = GetList(randomProblem);
+
+            if (randomList.Count > 0)
+            {
+                todaysStudents.Add(randomList[Random.Range(0, randomList.Count)]);
+            }
         }
 
         ShuffleTodayStudents();

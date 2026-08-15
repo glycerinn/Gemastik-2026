@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b083446fb915146a273c7d61889d36, type: 3}
+  m_Name: Student 13
+  m_EditorClassIdentifier: Assembly-CSharp::StudentSO
+  studentName: Lilik
+  portrait: {fileID: -4184692487329357866, guid: 472898fd2af7bb243a4dcba24fa18de0, type: 3}
+  nutritionProblem: 2
+  favoriteCarbs:
+  - {fileID: 11400000, guid: 122b84777baf745449236dcdd15f491a, type: 2}
+  - {fileID: 11400000, guid: f4935730f8876c1478232f0ccd0b1b68, type: 2}
+  favoriteProteins:
+  - {fileID: 11400000, guid: 3d153121e2a60e14283b3b99618a08d3, type: 2}
+  - {fileID: 11400000, guid: 557414cd22291b24899079d893a7f27f, type: 2}
+  - {fileID: 11400000, guid: 159f68a965ca6db428973c5026e4a1ba, type: 2}
+  favoriteFats:
+  - {fileID: 11400000, guid: 210de281447332249a1f51d0c5349bec, type: 2}
+  - {fileID: 11400000, guid: 2f0603f5fa9af0e499d8ea3fb48f3b79, type: 2}

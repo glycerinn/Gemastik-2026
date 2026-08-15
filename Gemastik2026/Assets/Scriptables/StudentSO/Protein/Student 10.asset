@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b083446fb915146a273c7d61889d36, type: 3}
+  m_Name: Student 10
+  m_EditorClassIdentifier: Assembly-CSharp::StudentSO
+  studentName: Mogi
+  portrait: {fileID: -4184692487329357866, guid: 472898fd2af7bb243a4dcba24fa18de0, type: 3}
+  nutritionProblem: 2
+  favoriteCarbs:
+  - {fileID: 11400000, guid: 8d8ffd16c4a595c4f9c29b0f27ebae68, type: 2}
+  favoriteProteins:
+  - {fileID: 11400000, guid: ed9da3183413c9449a937ff6d23219a5, type: 2}
+  favoriteFats:
+  - {fileID: 11400000, guid: 210de281447332249a1f51d0c5349bec, type: 2}

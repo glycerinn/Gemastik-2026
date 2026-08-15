@@ -2060,18 +2060,44 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5aef92bd5d8affd458e47b9d3a46aaf9, type: 2}
   - {fileID: 11400000, guid: c88d51f5be9c1254f85e2a3579bfd914, type: 2}
   - {fileID: 11400000, guid: 57d543e590def6e488b043d35789af87, type: 2}
+  - {fileID: 11400000, guid: ff041671df5a93b4b929db5f06713fcb, type: 2}
+  - {fileID: 11400000, guid: 5de4a6b3baa0ced4281d405d1788fc23, type: 2}
+  - {fileID: 11400000, guid: 200fca413cf50f34ebe4f6928d763ffa, type: 2}
+  - {fileID: 11400000, guid: 4dcf6aaf7257245429c1a50a95760fbd, type: 2}
+  - {fileID: 11400000, guid: 84da99a2f933fd5489966d7325820bcf, type: 2}
+  - {fileID: 11400000, guid: 80890adaf9d74a84083f3b7ae8605909, type: 2}
+  - {fileID: 11400000, guid: e29b512e75414bf41a3b4c1d60efe00a, type: 2}
+  - {fileID: 11400000, guid: 1ce7c322fa330f54aa7239cd665b37ba, type: 2}
   overweightStudents: []
   proteinStudents:
   - {fileID: 11400000, guid: 2510dc52c010e7749b26278431dd2ea6, type: 2}
   - {fileID: 11400000, guid: 31abeac213e3eed409239109de164637, type: 2}
   - {fileID: 11400000, guid: 28e3fdb2e1d371d4499b2be7cb94390c, type: 2}
   - {fileID: 11400000, guid: a25b50503cab8ad47a31b48a8932932e, type: 2}
+  - {fileID: 11400000, guid: 28f7315b87f63d441b6a163f1f2788e1, type: 2}
+  - {fileID: 11400000, guid: 5c368d411b37924458f300f9a1ea214d, type: 2}
+  - {fileID: 11400000, guid: f546ff587fe7e2c4ba681973c0141b13, type: 2}
+  - {fileID: 11400000, guid: dac8ec1af4067994eae099dd8938a715, type: 2}
+  - {fileID: 11400000, guid: 6954eb3278cb6cd45a9f8cc9e6f3ca99, type: 2}
+  - {fileID: 11400000, guid: ee35bcf327d9ecd4986ff80518c1ae43, type: 2}
+  - {fileID: 11400000, guid: 17ef3f177306ea14c8d18e14bc21f928, type: 2}
+  - {fileID: 11400000, guid: d20b45a966e5538498fdbadd14c7a9d6, type: 2}
   fatStudents:
   - {fileID: 11400000, guid: 5d5591d5644e38942a8ff69dd14caa7b, type: 2}
   - {fileID: 11400000, guid: c9ece828475ce0f46aaac3b10933284c, type: 2}
   - {fileID: 11400000, guid: fd068a150b66d6d45ac8d1254ab1b334, type: 2}
   - {fileID: 11400000, guid: d5f36a48997e9c941a11e5027c9f4266, type: 2}
+  - {fileID: 11400000, guid: d19bcb31d5c1dca44a2477b624dc88bf, type: 2}
+  - {fileID: 11400000, guid: 0c78c8ef0d1ae9a45b33760aa9e0067e, type: 2}
+  - {fileID: 11400000, guid: a4f09ce5d7ca9af46a3afbda655f482c, type: 2}
+  - {fileID: 11400000, guid: 4419fb76643a5fb47accce496dd5caad, type: 2}
+  - {fileID: 11400000, guid: 6612244493aeb604f915197811a03e8c, type: 2}
+  - {fileID: 11400000, guid: 36452f8e339faf540b3bfb3d00d504c4, type: 2}
+  - {fileID: 11400000, guid: 276cfad06c2f7944c96c7686488c0cd3, type: 2}
+  - {fileID: 11400000, guid: d56f1c92ee24d504795f8407195f92bc, type: 2}
   profileUI: {fileID: 1564888860}
+  majorityStudentCount: 6
+  randomStudentCount: 4
 --- !u!1 &581768965
 GameObject:
   m_ObjectHideFlags: 0
