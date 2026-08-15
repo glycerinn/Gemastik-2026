@@ -33,7 +33,7 @@ public class NewspaperPanel : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
 
         newspaperRect = newspaperWindow.GetComponent<RectTransform>();
         originalPosition = newspaperRect.anchoredPosition;

@@ -20,7 +20,7 @@ public class RiceGameManager : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
         Instance = this;
     }
 

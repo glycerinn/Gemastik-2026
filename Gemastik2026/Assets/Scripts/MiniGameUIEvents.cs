@@ -13,7 +13,7 @@ public class MiniGameUIEvents : MonoBehaviour
     private void Awake()
     {
         uIDocument = GetComponent<UIDocument>();
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
         button = uIDocument.rootVisualElement.Q("BackButton") as Button;
         if (button != null)
         {

@@ -39,7 +39,7 @@ public class Trash : MonoBehaviour, IPointerClickHandler
 
     void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
     }
 
     void Start()

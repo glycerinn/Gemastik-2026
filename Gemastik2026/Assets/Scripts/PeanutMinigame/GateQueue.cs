@@ -22,7 +22,7 @@ public class GateQueue : MonoBehaviour
 
     void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
     }
 
     void Start()

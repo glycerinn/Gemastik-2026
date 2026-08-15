@@ -21,7 +21,7 @@ public class ResultUI : MonoBehaviour
 
     void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
     }
 
     private void Start()

@@ -10,7 +10,7 @@ public class SettingsManager : MonoBehaviour
     public Slider AmbSlider;
     public Slider SFXSlider;
     public MainMenuEvents mainMenuEvents;
-    
+
     public void SetUp()
     {
         gameObject.SetActive(true);
@@ -19,28 +19,30 @@ public class SettingsManager : MonoBehaviour
     public void setMasterVolume()
     {
         float volume = masterSlider.value;
-        Audio.SetFloat("Master", Mathf.Log10(volume)*20);
+        // Mencegah Log10(0) dengan memberikan nilai minimal 0.0001f
+        Audio.SetFloat("Master", Mathf.Log10(Mathf.Max(0.0001f, volume)) * 20);
         PlayerPrefs.SetFloat("Master", volume);
     }
 
     public void setMusicVolume()
     {
         float volume = musicSlider.value;
-        Audio.SetFloat("BGM", Mathf.Log10(volume)*20);
+        Audio.SetFloat("BGM", Mathf.Log10(Mathf.Max(0.0001f, volume)) * 20);
         PlayerPrefs.SetFloat("BGM", volume);
     }
 
     public void setSFXVolume()
     {
         float volume = SFXSlider.value;
-        Audio.SetFloat("SFX", Mathf.Log10(volume)*20);
+        Audio.SetFloat("SFX", Mathf.Log10(Mathf.Max(0.0001f, volume)) * 20);
         PlayerPrefs.SetFloat("SFX", volume);
     }
 
     public void setAMBVolume()
     {
-        float volume = SFXSlider.value;
-        Audio.SetFloat("AMB", Mathf.Log10(volume)*20);
+        // BUG FIX: Menggunakan AmbSlider, bukan SFXSlider
+        float volume = AmbSlider.value;
+        Audio.SetFloat("AMB", Mathf.Log10(Mathf.Max(0.0001f, volume)) * 20);
         PlayerPrefs.SetFloat("AMB", volume);
     }
 
@@ -59,7 +61,12 @@ public class SettingsManager : MonoBehaviour
 
     public void LoadMenu()
     {
-        mainMenuEvents.uIDocument.enabled = true;
+        // BUG FIX: Munculkan UI Toolkit menggunakan DisplayStyle, bukan 'enabled'
+        if (mainMenuEvents != null && mainMenuEvents.uIDocument != null)
+        {
+            mainMenuEvents.uIDocument.rootVisualElement.style.display = UnityEngine.UIElements.DisplayStyle.Flex;
+        }
+
         gameObject.SetActive(false);
     }
 }

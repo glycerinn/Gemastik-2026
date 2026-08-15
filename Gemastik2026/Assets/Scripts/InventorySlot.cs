@@ -18,7 +18,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
         rectTransform = GetComponent<RectTransform>();
         originalScale = rectTransform.localScale;
 

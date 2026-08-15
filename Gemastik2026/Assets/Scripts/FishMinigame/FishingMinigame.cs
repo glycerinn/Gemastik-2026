@@ -63,7 +63,7 @@ public class FishingMinigame : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
         if (marker) originalMarkerScale = marker.localScale;
         if (trackArea) originalTrackPos = trackArea.anchoredPosition;
         ResetDifficulty();

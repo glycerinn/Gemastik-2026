@@ -20,7 +20,7 @@ public class Leaf : MonoBehaviour
 
     void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
         originalScale = transform.localScale;

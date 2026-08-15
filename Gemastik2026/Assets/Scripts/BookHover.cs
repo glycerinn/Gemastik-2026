@@ -14,7 +14,7 @@ public class BookHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
         rectTransform = GetComponent<RectTransform>();
         originalPosition = rectTransform.anchoredPosition;
     }

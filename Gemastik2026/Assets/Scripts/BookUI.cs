@@ -19,7 +19,7 @@ public class BookUI : MonoBehaviour
     private void Awake()
     {
         bookRect = bookPanel.GetComponent<RectTransform>();
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
         originalPosition = bookRect.anchoredPosition;
         originalScale = bookRect.localScale;
     }

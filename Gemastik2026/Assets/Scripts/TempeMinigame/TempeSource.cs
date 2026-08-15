@@ -10,7 +10,7 @@ public class TempeSource : MonoBehaviour
 
     void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
     }
 
     private void OnMouseDown()

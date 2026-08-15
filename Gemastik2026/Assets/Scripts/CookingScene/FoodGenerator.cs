@@ -18,7 +18,7 @@ public class FoodGenerator : MonoBehaviour
 
     void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
     }
 
     private void Start()

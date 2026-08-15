@@ -6,12 +6,13 @@ public class SceneBGM
 {
     public string sceneName;
     public AudioClip bgm;
+    public AudioClip ambience;
 }
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("Scene BGM")]
-    public SceneBGM[] sceneBGMs;   
+    [Header("Scene Audio")]
+    public SceneBGM[] sceneBGMs;
 
     [SerializeField] AudioSource BGM;
     [SerializeField] AudioSource AMB;
@@ -69,18 +70,44 @@ public class AudioManager : MonoBehaviour
 
     private float savedCardMusicTime;
 
-    public static AudioManager instance;
+    private static AudioManager _instance;
+
+    public static AudioManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<AudioManager>();
+
+                if (_instance == null)
+                {
+                    GameObject prefab = Resources.Load<GameObject>("AudioManager");
+                    if (prefab != null)
+                    {
+                        GameObject go = Instantiate(prefab);
+                        _instance = go.GetComponent<AudioManager>();
+                        go.name = "AudioManager (AutoSpawn)";
+                    }
+                    else
+                    {
+                        Debug.LogError("ERROR: Prefab 'AudioManager' tidak ditemukan di dalam folder 'Resources'!");
+                    }
+                }
+            }
+            return _instance;
+        }
+    }
 
     private void Awake()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
-
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        else
+        else if (_instance != this)
         {
             Destroy(gameObject);
         }
@@ -88,19 +115,48 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        foreach (SceneBGM sceneBGM in sceneBGMs)
+        StopSFX();
+
+        foreach (SceneBGM sceneAudio in sceneBGMs)
         {
-            if (sceneBGM.sceneName == scene.name)
+            if (sceneAudio.sceneName == scene.name)
             {
-                if (sceneBGM.bgm != null)
+                if (sceneAudio.bgm != null)
                 {
-                    BGM.clip = sceneBGM.bgm;
-                    BGM.loop = true;
-                    BGM.Play();
+                    if (BGM.clip != sceneAudio.bgm || !BGM.isPlaying)
+                    {
+                        BGM.clip = sceneAudio.bgm;
+                        BGM.loop = true;
+                        BGM.Play();
+                    }
+                }
+
+                if (sceneAudio.ambience != null)
+                {
+                    if (AMB.clip != sceneAudio.ambience || !AMB.isPlaying)
+                    {
+                        AMB.clip = sceneAudio.ambience;
+                        AMB.loop = true;
+                        AMB.Play();
+                    }
+                }
+                else
+                {
+                    AMB.Stop();
+                    AMB.clip = null;
                 }
 
                 return;
             }
+        }
+    }
+
+    public void StopSFX()
+    {
+        if (SFX != null)
+        {
+            SFX.Stop();
+            SFX.clip = null;
         }
     }
 
@@ -109,216 +165,77 @@ public class AudioManager : MonoBehaviour
     // BGM
     // =========================
 
-    public void playLakeBGM()
+    private void PlayBGM(AudioClip clip)
     {
-        BGM.clip = LakeBGM;
+        if (BGM.clip == clip && BGM.isPlaying) return;
+        BGM.clip = clip;
+        BGM.loop = true;
         BGM.Play();
     }
 
-    public void playMountainBGM()
-    {
-        BGM.clip = MountainBGM;
-        BGM.Play();
-    }
-
-    public void playVillageBGM()
-    {
-        BGM.clip = VillageBGM;
-        BGM.Play();
-    }
-
-    public void playBananaBGM()
-    {
-        BGM.clip = BananaBGM;
-        BGM.Play();
-    }
-
-    public void playCookBGM()
-    {
-        BGM.clip = CookBGM;
-        BGM.Play();
-    }
-
-    public void playFishBGM()
-    {
-        BGM.clip = FishBGM;
-        BGM.Play();
-    }
-
-    public void playNutBGM()
-    {
-        BGM.clip = NutBGM;
-        BGM.Play();
-    }
-
-    public void playTempeBGM()
-    {
-        BGM.clip = TempeBGM;
-        BGM.Play();
-    }
-
-    public void playRiceBGM()
-    {
-        BGM.clip = RiceBGM;
-        BGM.Play();
-    }
-
-    public void playWinLoseBGM()
-    {
-        BGM.clip = WinLoseBGM;
-        BGM.Play();
-    }
+    public void playLakeBGM() => PlayBGM(LakeBGM);
+    public void playMountainBGM() => PlayBGM(MountainBGM);
+    public void playVillageBGM() => PlayBGM(VillageBGM);
+    public void playBananaBGM() => PlayBGM(BananaBGM);
+    public void playCookBGM() => PlayBGM(CookBGM);
+    public void playFishBGM() => PlayBGM(FishBGM);
+    public void playNutBGM() => PlayBGM(NutBGM);
+    public void playTempeBGM() => PlayBGM(TempeBGM);
+    public void playRiceBGM() => PlayBGM(RiceBGM);
+    public void playWinLoseBGM() => PlayBGM(WinLoseBGM);
 
 
     // =========================
     // AMBIENCE
     // =========================
 
-    public void playLakeA()
+    private void PlayAmbience(AudioClip clip)
     {
-        AMB.clip = LakeA;
+        if (AMB.clip == clip && AMB.isPlaying) return;
+
+        AMB.clip = clip;
+        AMB.loop = true;
         AMB.Play();
     }
 
-    public void playMountainA()
-    {
-        AMB.clip = MountainA;
-        AMB.Play();
-    }
-
-    public void playVillageA()
-    {
-        AMB.clip = VillageA;
-        AMB.Play();
-    }
+    public void playLakeA() => PlayAmbience(LakeA);
+    public void playMountainA() => PlayAmbience(MountainA);
+    public void playVillageA() => PlayAmbience(VillageA);
 
 
     // =========================
-    // BANANA
+    // SFX BANANA DLL
     // =========================
+    public void playBananaFallSFX() { SFX.PlayOneShot(BananaFallsfx); }
+    public void playBananaCollectSFX() { SFX.PlayOneShot(BananaCollectsfx); }
 
-    public void playBananaFallSFX()
-    {
-        SFX.PlayOneShot(BananaFallsfx);
-    }
-
-    public void playBananaCollectSFX()
-    {
-        SFX.PlayOneShot(BananaCollectsfx);
-    }
-
-
-    // =========================
-    // COOK
-    // =========================
-
-    public void playRestockSFX()
-    {
-        SFX.PlayOneShot(Restocksfx);
-    }
-
-    public void playSubmitSFX()
-    {
-        SFX.PlayOneShot(Submitsfx);
-    }
-
+    public void playRestockSFX() { SFX.PlayOneShot(Restocksfx); }
+    public void playSubmitSFX() { SFX.PlayOneShot(Submitsfx); }
     public void playAttackSFX()
     {
-        if (PlaceFoodsfx.Length == 0)
-            return;
-
+        if (PlaceFoodsfx.Length == 0) return;
         int rand = Random.Range(0, PlaceFoodsfx.Length);
-
         SFX.PlayOneShot(PlaceFoodsfx[rand]);
     }
 
+    public void playFishingSFX() { SFX.PlayOneShot(Fishingsfx); }
+    public void playFishingSuccessSFX() { SFX.PlayOneShot(FishingSuccesssfx); }
+    public void playFishingFailSFX() { SFX.PlayOneShot(FishingFailsfx); }
 
-    // =========================
-    // FISH
-    // =========================
-
-    public void playFishingSFX()
-    {
-        SFX.PlayOneShot(Fishingsfx);
-    }
-
-    public void playFishingSuccessSFX()
-    {
-        SFX.PlayOneShot(FishingSuccesssfx);
-    }
-
-    public void playFishingFailSFX()
-    {
-        SFX.PlayOneShot(FishingFailsfx);
-    }
-
-
-    // =========================
-    // NUT
-    // =========================
-
-    public void playSwipeSFX()
-    {
-        SFX.PlayOneShot(Swipesfx);
-    }
-
-
-    // =========================
-    // TEMPEH
-    // =========================
-
-    public void playWrapSFX()
-    {
-        SFX.PlayOneShot(Wrapsfx);
-    }
-
-
-    // =========================
-    // TRASH / HARVEST / TAKE
-    // =========================
+    public void playSwipeSFX() { SFX.PlayOneShot(Swipesfx); }
+    public void playWrapSFX() { SFX.PlayOneShot(Wrapsfx); }
 
     public void playTrashHarvestTakeSFX()
     {
-        if (trashharvesttakesfx.Length == 0)
-            return;
-
+        if (trashharvesttakesfx.Length == 0) return;
         int rand = Random.Range(0, trashharvesttakesfx.Length);
-
         SFX.PlayOneShot(trashharvesttakesfx[rand]);
     }
 
-
-    // =========================
-    // UI
-    // =========================
-
-    public void playBookClickSFX()
-    {
-        SFX.PlayOneShot(BookClicksfx);
-    }
-
-    public void playClickSFX()
-    {
-        SFX.PlayOneShot(Clicksfx);
-    }
-
-    public void playDoorSFX()
-    {
-        SFX.PlayOneShot(Doorsfx);
-    }
-
-    public void playHoverSFX()
-    {
-        SFX.PlayOneShot(Hoversfx);
-    }
-
-    public void playNewsCloseSFX()
-    {
-        SFX.PlayOneShot(NewsClosesfx);
-    }
-
-    public void playNewsOpenSFX()
-    {
-        SFX.PlayOneShot(NewsOpensfx);
-    }
+    public void playBookClickSFX() { SFX.PlayOneShot(BookClicksfx); }
+    public void playClickSFX() { SFX.PlayOneShot(Clicksfx); }
+    public void playDoorSFX() { SFX.PlayOneShot(Doorsfx); }
+    public void playHoverSFX() { SFX.PlayOneShot(Hoversfx); }
+    public void playNewsCloseSFX() { SFX.PlayOneShot(NewsClosesfx); }
+    public void playNewsOpenSFX() { SFX.PlayOneShot(NewsOpensfx); }
 }

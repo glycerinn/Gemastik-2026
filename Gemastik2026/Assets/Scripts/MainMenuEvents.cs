@@ -14,7 +14,7 @@ public class MainMenuEvents : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager = AudioManager.instance;
         uIDocument = GetComponent<UIDocument>();
 
         button = uIDocument.rootVisualElement.Q("StartGameButton") as Button;
@@ -49,17 +49,14 @@ public class MainMenuEvents : MonoBehaviour
     {
         Debug.Log("pressed");
         audioManager.playClickSFX();
-        // Pastikan waktu berjalan normal
         Time.timeScale = 1f;
 
-        // Panggil FadeManager untuk melakukan transisi fade hitam sebelum masuk ke game
         if (FadeManager.Instance != null)
         {
             FadeManager.Instance.LoadSceneWithFade("Cutscene");
         }
         else
         {
-            // Fallback jika FadeManager belum terpasang di Main Menu
             SceneManager.LoadScene("Cutscene");
         }
     }
@@ -68,18 +65,18 @@ public class MainMenuEvents : MonoBehaviour
     {
         Debug.Log("pressed");
         audioManager.playClickSFX();
-        // Pastikan waktu berjalan normal
         Time.timeScale = 1f;
 
         settings.SetUp();
-        uIDocument.enabled = false;
+
+        uIDocument.rootVisualElement.style.display = DisplayStyle.None;
     }
 
     private void OnQuit(ClickEvent evt)
     {
         Debug.Log("pressed");
         audioManager.playClickSFX();
-        // Pastikan waktu berjalan normal
+
         Time.timeScale = 1f;
 
         Application.Quit();
@@ -87,6 +84,8 @@ public class MainMenuEvents : MonoBehaviour
 
     private void OnDisable()
     {
-        button.UnregisterCallback<ClickEvent>(OnPlayGame);
+        if (button != null) button.UnregisterCallback<ClickEvent>(OnPlayGame);
+        if (settingsbutton != null) settingsbutton.UnregisterCallback<ClickEvent>(OnSettings);
+        if (quitbutton != null) quitbutton.UnregisterCallback<ClickEvent>(OnQuit);
     }
 }

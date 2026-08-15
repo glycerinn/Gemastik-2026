@@ -1,6 +1,6 @@
 ﻿title: Teleporter2
 ---
-NPC: Mau pergi ke mana?
+Sopir: Mau pergi ke mana?
 -> Ke Pegunungan
     Sopir: Baik, mari berangkat!
     <<load_scene SideScroller>>
