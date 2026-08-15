@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,14 +7,16 @@ using UnityEngine.UI;
 public class NewspaperType
 {
     public NutritionProblem problem;
-    public Color color;
+
+    [TextArea(3, 10)]
+    public string newspaperText;
 }
 
 public class NewspaperPanel : MonoBehaviour
 {
     [Header("UI")]
     public GameObject newspaperWindow;
-    public Image panelImage;
+    public TMP_Text newspaperText;
 
     [Header("Newspapers")]
     public NewspaperType[] newspapers;
@@ -31,6 +34,7 @@ public class NewspaperPanel : MonoBehaviour
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
         newspaperRect = newspaperWindow.GetComponent<RectTransform>();
         originalPosition = newspaperRect.anchoredPosition;
     }
@@ -41,7 +45,7 @@ public class NewspaperPanel : MonoBehaviour
         {
             DayManager.Instance.StartNewDay();
 
-            SetNewspaperColor();
+            SetNewspaperText();
 
             DayManager.Instance.newspaperShownToday = true;
 
@@ -53,13 +57,13 @@ public class NewspaperPanel : MonoBehaviour
         }
     }
 
-    void SetNewspaperColor()
+    void SetNewspaperText()
     {
         foreach (NewspaperType paper in newspapers)
         {
             if (paper.problem == DayManager.Instance.currentProblem)
             {
-                panelImage.color = paper.color;
+                newspaperText.text = paper.newspaperText;
                 break;
             }
         }
@@ -68,10 +72,13 @@ public class NewspaperPanel : MonoBehaviour
     public void OpenWithAnimation()
     {
         audioManager.playNewsOpenSFX();
+
         if (currentAnimation != null)
             StopCoroutine(currentAnimation);
 
         newspaperWindow.SetActive(true);
+
+        SetNewspaperText();
 
         Vector2 startPosition =
             originalPosition + Vector2.up * startDistance;
@@ -97,7 +104,6 @@ public class NewspaperPanel : MonoBehaviour
             float progress =
                 Mathf.Clamp01(timer / openDuration);
 
-            // Smooth movement
             progress = Mathf.SmoothStep(0f, 1f, progress);
 
             newspaperRect.anchoredPosition =
@@ -118,6 +124,7 @@ public class NewspaperPanel : MonoBehaviour
     public void CloseNewspaper()
     {
         audioManager.playNewsCloseSFX();
+
         if (currentAnimation != null)
             StopCoroutine(currentAnimation);
 
@@ -154,7 +161,6 @@ public class NewspaperPanel : MonoBehaviour
 
         newspaperWindow.SetActive(false);
 
-        // Reset for next opening
         newspaperRect.anchoredPosition = originalPosition;
 
         currentAnimation = null;
@@ -164,7 +170,7 @@ public class NewspaperPanel : MonoBehaviour
 
     public void OpenNewspaper()
     {
-        SetNewspaperColor();
+        SetNewspaperText();
         OpenWithAnimation();
     }
 }

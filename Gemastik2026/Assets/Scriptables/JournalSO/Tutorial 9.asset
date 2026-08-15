@@ -15,4 +15,4 @@ MonoBehaviour:
   title: Minigame - Pisang
   description: "Untuk memainkan minigame ini, kita harus\nmenangkap pisang yang berjatuhan
     dengan cara \nmenekan tombol LMB (left mouse button)\npada pisang-pisang tersebut.\n"
-  image: {fileID: 7295720092626980286, guid: 0ebd96cf18e51ed4fa37135b2dca555a, type: 3}
+  image: {fileID: 7381965769198725172, guid: 3ad5cce88abaaeb49b6e2b9a4acbae2f, type: 3}
